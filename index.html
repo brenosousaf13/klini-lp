@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Klini Saúde — Planos de Saúde no Rio de Janeiro</title>
+  <meta name="description" content="Conheça os planos da Klini Saúde e tenha acesso a consultas, exames, hospitais e telemedicina com excelente custo-benefício.">
+
+  <style>
+    /* ===== @FONT-FACE — OBJECTIVE (local woff2) ===== */
+    @font-face {
+      font-family: 'Objective';
+      src: url('Objective/Objective_Woff2/Objective-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Objective';
+      src: url('Objective/Objective_Woff2/Objective-Italic.woff2') format('woff2');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Objective';
+      src: url('Objective/Objective_Woff2/Objective-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Objective';
+      src: url('Objective/Objective_Woff2/Objective-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Objective';
+      src: url('Objective/Objective_Woff2/Objective-Bold-Italic.woff2') format('woff2');
+      font-weight: 700;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Objective';
+      src: url('Objective/Objective_Woff2/Objective-ExtraBold.woff2') format('woff2');
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Objective';
+      src: url('Objective/Objective_Woff2/Objective-Light.woff2') format('woff2');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ===== @FONT-FACE — MERRIWEATHER (local variable) ===== */
+    @font-face {
+      font-family: 'Merriweather';
+      src: url('Merriweather/Merriweather-VariableFont_opsz,wdth,wght.ttf') format('truetype');
+      font-weight: 300 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Merriweather';
+      src: url('Merriweather/Merriweather-Italic-VariableFont_opsz,wdth,wght.ttf') format('truetype');
+      font-weight: 300 900;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    /* ===== DESIGN TOKENS ===== */
+    :root {
+      /* Cores Primárias */
+      --color-teal: #259591;
+      --color-teal-light: #6AA7AE;
+      --color-teal-80: #51AAA7;
+      --color-teal-60: #7CBFBD;
+      --color-teal-40: #A8D5D3;
+      --color-teal-20: #D3EAE9;
+      --color-teal-light-80: #88B9BE;
+      --color-teal-light-60: #A6CACE;
+      --color-teal-light-40: #C3DCDF;
+      --color-teal-light-20: #E1EDEF;
+
+      /* Cores Secundárias */
+      --color-orange: #CD7925;
+      --color-orange-80: #D79451;
+      --color-orange-60: #E1AF7C;
+      --color-orange-40: #EBC9A8;
+      --color-orange-20: #F5E4D3;
+      --color-coral: #E05759;
+      --color-coral-80: #E6797A;
+      --color-coral-60: #EC9A9B;
+      --color-coral-40: #F3BCBD;
+      --color-coral-20: #F9DDDE;
+
+      /* Neutros */
+      --color-white: #FFFFFF;
+      --color-bg-light: #F5F7F7;
+      --color-gray-light: #E0E4E4;
+      --color-gray-medium: #9EA8A8;
+      --color-gray-dark: #4A5656;
+      --color-black: #2D3436;
+
+      /* Semânticas */
+      --color-success: #259591;
+      --color-error: #E05759;
+      --color-warning: #CD7925;
+      --color-info: #6AA7AE;
+
+      /* Tipografia */
+      --font-heading: 'Objective', 'Helvetica Neue', Arial, sans-serif;
+      --font-body: 'Merriweather', Georgia, 'Times New Roman', serif;
+
+      /* Espaçamento */
+      --space-xxs: 4px;
+      --space-xs: 8px;
+      --space-sm: 12px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-xxl: 48px;
+      --space-xxxl: 80px;
+
+      /* Bordas */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+      --radius-pill: 24px;
+      --radius-full: 9999px;
+
+      /* Sombras */
+      --shadow-sm: 0 1px 3px rgba(37, 149, 145, 0.08);
+      --shadow-md: 0 4px 14px rgba(37, 149, 145, 0.10);
+      --shadow-lg: 0 8px 28px rgba(37, 149, 145, 0.12);
+      --shadow-warm: 0 4px 14px rgba(205, 121, 37, 0.10);
+
+      /* Transições */
+      --transition-default: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-fast: all 0.15s ease;
+      --transition-slow: all 0.5s ease;
+    }
+
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-gray-dark);
+      background: var(--color-white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    /* ===== UTILITIES ===== */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    @media (min-width: 768px) {
+      .container { padding: 0 var(--space-lg); }
+    }
+    @media (min-width: 1280px) {
+      .container { padding: 0; }
+    }
+
+    .section-padding {
+      padding: var(--space-xxl) 0;
+    }
+
+    @media (min-width: 768px) {
+      .section-padding { padding: var(--space-xxxl) 0; }
+    }
+
+    /* Placeholder images */
+    .placeholder {
+      background: var(--color-teal-20);
+      border: 2px dashed var(--color-teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--color-teal);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    /* Section titles */
+    .section-overline {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-teal);
+      margin-bottom: var(--space-xs);
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 1.2;
+      color: var(--color-black);
+      margin-bottom: var(--space-md);
+    }
+
+    @media (min-width: 768px) {
+      .section-title { font-size: 36px; }
+    }
+
+    .section-subtitle {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--color-gray-dark);
+      max-width: 640px;
+    }
+
+    .section-subtitle.centered {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .text-center { text-align: center; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 15px;
+      padding: 12px 28px;
+      border-radius: var(--radius-pill);
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: var(--transition-default);
+      white-space: nowrap;
+      min-height: 44px;
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--color-teal);
+      outline-offset: 2px;
+    }
+
+    .btn-primary {
+      background: var(--color-teal);
+      color: var(--color-white);
+    }
+    .btn-primary:hover {
+      background: #1E7B78;
+    }
+
+    .btn-orange {
+      background: var(--color-orange);
+      color: var(--color-white);
+    }
+    .btn-orange:hover {
+      background: #B56B20;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--color-teal);
+      border-color: var(--color-teal);
+    }
+    .btn-secondary:hover {
+      background: var(--color-teal-20);
+    }
+
+    .btn-white {
+      background: var(--color-white);
+      color: var(--color-teal);
+    }
+    .btn-white:hover {
+      background: var(--color-teal-20);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-gray-dark);
+      border: none;
+      font-size: 14px;
+      padding: 8px 16px;
+      border-radius: var(--radius-md);
+    }
+    .btn-ghost:hover {
+      color: var(--color-teal);
+    }
+
+    /* Fade-in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== 1. NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--color-white);
+      transition: var(--transition-default);
+      height: 72px;
+    }
+    .navbar.scrolled {
+      box-shadow: var(--shadow-sm);
+    }
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .navbar-logo {
+      width: 140px;
+      height: 40px;
+    }
+    .navbar-links {
+      display: none;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .navbar-links { display: flex; }
+    }
+    .navbar-links a {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      font-size: 15px;
+      color: var(--color-gray-dark);
+      position: relative;
+      transition: var(--transition-default);
+    }
+    .navbar-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-teal);
+      transition: var(--transition-default);
+    }
+    .navbar-links a:hover {
+      color: var(--color-teal);
+    }
+    .navbar-links a:hover::after {
+      width: 100%;
+    }
+    .navbar-ctas {
+      display: none;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .navbar-ctas { display: flex; }
+    }
+    .navbar-ctas .btn {
+      font-size: 14px;
+      padding: 8px 20px;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1100;
+    }
+    @media (min-width: 1024px) {
+      .hamburger { display: none; }
+    }
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--color-black);
+      border-radius: 2px;
+      transition: var(--transition-default);
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+      background: var(--color-white);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+      background: var(--color-white);
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: var(--color-teal);
+      z-index: 1050;
+      padding: 100px var(--space-lg) var(--space-lg);
+      transition: var(--transition-default);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    .mobile-menu.open {
+      right: 0;
+    }
+    .mobile-menu a {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      font-size: 18px;
+      color: var(--color-white);
+      transition: var(--transition-fast);
+    }
+    .mobile-menu a:hover {
+      opacity: 0.8;
+    }
+    .mobile-menu .btn-white {
+      text-align: center;
+      margin-top: var(--space-md);
+    }
+    .mobile-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 1040;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition-default);
+    }
+    .mobile-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ===== 2. HERO ===== */
+    .hero {
+      padding-top: 72px;
+      background: linear-gradient(135deg, #259591 0%, #6AA7AE 100%);
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+      padding-top: var(--space-xxl);
+      padding-bottom: var(--space-xxl);
+    }
+    @media (min-width: 768px) {
+      .hero .container {
+        grid-template-columns: 1fr 1fr;
+        padding-top: var(--space-xxxl);
+        padding-bottom: var(--space-xxxl);
+      }
+    }
+    .hero-content {
+      color: var(--color-white);
+    }
+    .hero-content h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 1.2;
+      margin-bottom: var(--space-lg);
+    }
+    @media (min-width: 768px) {
+      .hero-content h1 { font-size: 44px; }
+    }
+    @media (min-width: 1024px) {
+      .hero-content h1 { font-size: 52px; }
+    }
+    .hero-content p {
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.7;
+      opacity: 0.92;
+      margin-bottom: var(--space-xl);
+      max-width: 480px;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+    .hero-image {
+      width: 100%;
+      aspect-ratio: 4/3;
+      min-height: 280px;
+    }
+    @media (min-width: 768px) {
+      .hero-image {
+        aspect-ratio: 3/4;
+        min-height: 400px;
+      }
+    }
+
+    /* ===== 3. PLANOS ===== */
+    .planos {
+      background: var(--color-bg-light);
+    }
+    .planos-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      margin-top: var(--space-xl);
+    }
+    @media (min-width: 640px) {
+      .planos-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .planos-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .plano-card {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: var(--space-xl) var(--space-lg);
+      border-top: 4px solid var(--color-teal);
+      transition: var(--transition-default);
+      display: flex;
+      flex-direction: column;
+    }
+    .plano-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .plano-card .overline {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-teal);
+      margin-bottom: var(--space-xs);
+    }
+    .plano-card h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--color-black);
+      margin-bottom: var(--space-sm);
+      line-height: 1.2;
+    }
+    .plano-card .para-quem {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--color-gray-dark);
+      margin-bottom: var(--space-md);
+    }
+    .plano-card .beneficios-label {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--color-teal);
+      margin-bottom: var(--space-xxs);
+    }
+    .plano-card .beneficios {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--color-gray-dark);
+      margin-bottom: var(--space-lg);
+      flex: 1;
+    }
+    .plano-card .card-buttons {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+    .plano-card .card-buttons .btn {
+      font-size: 13px;
+      padding: 10px 20px;
+    }
+
+    /* ===== 4. HOSPITAIS ===== */
+    .hospitais {
+      background: var(--color-white);
+    }
+    .hospitais-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      margin-top: var(--space-xl);
+    }
+    @media (min-width: 768px) {
+      .hospitais-layout {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+    }
+    .hospital-card-fixo {
+      background: linear-gradient(135deg, #259591 0%, #6AA7AE 100%);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl) var(--space-lg);
+      color: var(--color-white);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    @media (min-width: 768px) {
+      .hospital-card-fixo {
+        grid-row: span 1;
+      }
+    }
+    .hospital-card-fixo h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 1.3;
+      margin-bottom: var(--space-md);
+    }
+    .hospital-card-fixo p {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.7;
+      opacity: 0.92;
+    }
+    .hospital-foto-card {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: var(--transition-default);
+    }
+    .hospital-foto-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .hospital-foto-card .placeholder {
+      aspect-ratio: 4/3;
+      border-radius: 0;
+      border: none;
+      border-bottom: 2px dashed var(--color-teal);
+    }
+    .hospital-foto-card .hospital-name {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--color-black);
+      padding: var(--space-md) var(--space-md);
+      text-align: center;
+    }
+
+    /* ===== 5. VSL VIDEO ===== */
+    .vsl {
+      background: var(--color-bg-light);
+    }
+    .vsl-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      margin-top: var(--space-xl);
+    }
+    .vsl-video-container {
+      position: relative;
+      aspect-ratio: 16/9;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .vsl-video-container .placeholder {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      font-size: 18px;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .play-btn {
+      width: 72px;
+      height: 72px;
+      border-radius: var(--radius-full);
+      background: rgba(255,255,255,0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+    }
+    .play-btn svg {
+      width: 28px;
+      height: 28px;
+      fill: var(--color-teal);
+      margin-left: 4px;
+    }
+
+    /* ===== 6. DIFERENCIAIS ===== */
+    .diferenciais {
+      background: var(--color-white);
+    }
+    .diferenciais-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      margin-top: var(--space-xl);
+    }
+    @media (min-width: 640px) {
+      .diferenciais-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .diferenciais-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .diferencial-card {
+      text-align: center;
+      padding: var(--space-xl) var(--space-lg);
+      border-radius: var(--radius-lg);
+      background: var(--color-white);
+      border: 1px solid var(--color-gray-light);
+      transition: var(--transition-default);
+    }
+    .diferencial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: transparent;
+    }
+    .diferencial-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-full);
+      background: var(--color-teal-20);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-md);
+      font-size: 24px;
+    }
+    .diferencial-card h3 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--color-black);
+      margin-bottom: var(--space-xs);
+      line-height: 1.3;
+    }
+    .diferencial-card p {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--color-gray-dark);
+    }
+
+    /* Stats row */
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-xxl);
+      margin-top: var(--space-xxl);
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-number {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 40px;
+      color: var(--color-teal);
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      font-size: 14px;
+      color: var(--color-gray-medium);
+      margin-top: var(--space-xxs);
+    }
+
+    /* ===== 7. DEPOIMENTOS ===== */
+    .depoimentos {
+      background: var(--color-bg-light);
+      overflow: hidden;
+    }
+    .depoimentos-carousel {
+      display: flex;
+      gap: var(--space-lg);
+      margin-top: var(--space-xl);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: var(--space-md);
+      scrollbar-width: none;
+    }
+    .depoimentos-carousel::-webkit-scrollbar {
+      display: none;
+    }
+    .depoimento-card {
+      flex: 0 0 300px;
+      scroll-snap-align: start;
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: var(--space-xl) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    @media (min-width: 768px) {
+      .depoimento-card { flex: 0 0 360px; }
+    }
+    .depoimento-card .aspas {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 48px;
+      color: var(--color-teal-40);
+      line-height: 1;
+      height: 30px;
+    }
+    .depoimento-card .placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      min-height: 180px;
+      font-size: 13px;
+    }
+    .depoimento-author {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .depoimento-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-full);
+      border: 2px solid var(--color-teal);
+      background: var(--color-teal-20);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .depoimento-name {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--color-black);
+    }
+    .depoimento-plan {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      font-size: 12px;
+      color: var(--color-teal);
+    }
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-xs);
+      margin-top: var(--space-lg);
+    }
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: var(--radius-full);
+      background: var(--color-gray-light);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition-default);
+    }
+    .carousel-dot.active {
+      background: var(--color-teal);
+      width: 28px;
+    }
+
+    /* ===== 8. SOBRE ===== */
+    .sobre {
+      background: var(--color-white);
+    }
+    .sobre .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .sobre .container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .sobre-text h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 32px;
+      color: var(--color-black);
+      margin-bottom: var(--space-lg);
+      line-height: 1.2;
+    }
+    @media (min-width: 768px) {
+      .sobre-text h2 { font-size: 40px; }
+    }
+    .sobre-text p {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--color-gray-dark);
+      margin-bottom: var(--space-md);
+    }
+    .sobre-text strong {
+      color: var(--color-black);
+    }
+    .sobre-image {
+      aspect-ratio: 4/3;
+      min-height: 300px;
+    }
+
+    /* ===== 9. CTA FINAL ===== */
+    .cta-final {
+      background: linear-gradient(135deg, #259591 0%, #6AA7AE 100%);
+      text-align: center;
+      color: var(--color-white);
+    }
+    .cta-final h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 1.2;
+      margin-bottom: var(--space-md);
+    }
+    @media (min-width: 768px) {
+      .cta-final h2 { font-size: 36px; }
+    }
+    .cta-final p {
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.7;
+      opacity: 0.92;
+      margin-bottom: var(--space-xl);
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-final .btn-orange {
+      font-size: 16px;
+      padding: 14px 36px;
+    }
+
+    /* ===== 10. FOOTER ===== */
+    .footer {
+      background: var(--color-black);
+      color: var(--color-white);
+      padding: var(--space-xxl) 0 var(--space-lg);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+      margin-bottom: var(--space-xxl);
+    }
+    @media (min-width: 640px) {
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+    }
+    .footer-brand .placeholder {
+      width: 140px;
+      height: 40px;
+      background: var(--color-teal);
+      border: none;
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-md);
+      font-size: 12px;
+      color: var(--color-white);
+    }
+    .footer-brand .tagline {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 14px;
+      opacity: 0.7;
+      line-height: 1.6;
+    }
+    .footer-col h4 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-md);
+      color: var(--color-white);
+    }
+    .footer-col a {
+      display: block;
+      font-family: var(--font-heading);
+      font-weight: 400;
+      font-size: 14px;
+      opacity: 0.8;
+      margin-bottom: var(--space-sm);
+      transition: var(--transition-fast);
+    }
+    .footer-col a:hover {
+      opacity: 1;
+      color: var(--color-teal-40);
+    }
+    .footer-social {
+      display: flex;
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+    .footer-social a {
+      margin-bottom: 0;
+      opacity: 1;
+      font-size: 20px;
+      transition: var(--transition-default);
+    }
+    .footer-social a:hover {
+      color: var(--color-orange);
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: var(--space-lg);
+      text-align: center;
+    }
+    .footer-bottom p {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      opacity: 0.5;
+    }
+
+    /* ===== WHATSAPP FLOAT ===== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 900;
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-full);
+      background: #25D366;
+      color: var(--color-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+      cursor: pointer;
+      border: none;
+      transition: var(--transition-default);
+      animation: whatsappBounce 2s ease infinite;
+      animation-delay: 1s;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      animation: none;
+    }
+    .whatsapp-float svg {
+      width: 28px;
+      height: 28px;
+      fill: var(--color-white);
+    }
+
+    @keyframes whatsappBounce {
+      0%, 100% { transform: translateY(0); }
+      15% { transform: translateY(-8px); }
+      30% { transform: translateY(0); }
+      45% { transform: translateY(-4px); }
+      60% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <div class="placeholder navbar-logo" style="border-radius:8px;">Logo Klini Saude</div>
+
+      <nav class="navbar-links">
+        <a href="#planos">Planos</a>
+        <a href="#hospitais">Rede</a>
+        <a href="#diferenciais">Diferenciais</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <div class="navbar-ctas">
+        <a href="#planos" class="btn btn-primary">Simule aqui</a>
+        <a href="#" class="btn btn-secondary">Login</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#planos">Planos</a>
+    <a href="#hospitais">Rede</a>
+    <a href="#diferenciais">Diferenciais</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#contato">Contato</a>
+    <a href="#planos" class="btn btn-white">Simule aqui</a>
+  </nav>
+
+  <main>
+
+    <!-- ===== 1. HERO ===== -->
+    <section class="hero" id="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Sua saude merece mais cuidado, acesso e tranquilidade.</h1>
+          <p>Conheca os planos da Klini Saude e tenha acesso a consultas, exames, hospitais e telemedicina com excelente custo-beneficio.</p>
+          <div class="hero-buttons">
+            <a href="#planos" class="btn btn-orange">Contrate agora</a>
+            <a href="#planos" class="btn btn-white">Conheca os planos</a>
+          </div>
+        </div>
+        <div class="placeholder hero-image">
+          <span>📷 Foto do Zico</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 2. PLANOS ===== -->
+    <section class="planos section-padding" id="planos">
+      <div class="container text-center">
+        <p class="section-overline">Nossos Planos</p>
+        <h2 class="section-title">Planos pensados para diferentes necessidades</h2>
+        <p class="section-subtitle centered">Seja para voce, sua familia ou sua empresa, nos temos o plano que cabe perfeitamente na sua necessidade.</p>
+      </div>
+      <div class="container">
+        <div class="planos-grid">
+
+          <!-- Klini Rede Casa -->
+          <div class="plano-card fade-in">
+            <span class="overline">Plano</span>
+            <h3>Klini Rede Casa</h3>
+            <p class="para-quem">O Klini Rede Casa Hospitalar e a escolha ideal para quem quer estar segurado nas horas mais importantes.</p>
+            <p class="beneficios-label">Beneficios</p>
+            <p class="beneficios">Acesso a pronto atendimento e internacoes nos hospitais da rede propria. Cobertura regional hospitalar e obstetrica.</p>
+            <div class="card-buttons">
+              <a href="#" class="btn btn-orange">Contrate agora</a>
+              <a href="#" class="btn btn-ghost">Conheca mais</a>
+            </div>
+          </div>
+
+          <!-- Klini Ambulatorial -->
+          <div class="plano-card fade-in">
+            <span class="overline">Plano</span>
+            <h3>Klini Ambulatorial</h3>
+            <p class="para-quem">O Klini Ambulatorial e feito para quem quer cuidar da saude de forma ativa sem custar muito.</p>
+            <p class="beneficios-label">Beneficios</p>
+            <p class="beneficios">Acesso a toda a rede de Centros Medicos Klini e permanencia de 12h em pronto atendimento em toda a Rede Casa de Hospitais.</p>
+            <div class="card-buttons">
+              <a href="#" class="btn btn-orange">Contrate agora</a>
+              <a href="#" class="btn btn-ghost">Conheca mais</a>
+            </div>
+          </div>
+
+          <!-- Klini 200 -->
+          <div class="plano-card fade-in">
+            <span class="overline">Plano</span>
+            <h3>Klini 200</h3>
+            <p class="para-quem">O Klini 200 e a escolha ideal para quem precisa de um plano de qualidade e vive no agito do dia-a-dia do trabalho e da cidade.</p>
+            <p class="beneficios-label">Beneficios</p>
+            <p class="beneficios">Acesso a consultas, exames, hospitais e pronto atendimento. Rede Credenciada complementar a nossa Rede Propria.</p>
+            <div class="card-buttons">
+              <a href="#" class="btn btn-orange">Contrate agora</a>
+              <a href="#" class="btn btn-ghost">Conheca mais</a>
+            </div>
+          </div>
+
+          <!-- Klini 400 -->
+          <div class="plano-card fade-in">
+            <span class="overline">Plano</span>
+            <h3>Klini 400</h3>
+            <p class="para-quem">O Klini 400 e a escolha ideal para quem precisa de um plano que esteja presente em varias areas de atendimento e uma rede mais ampla.</p>
+            <p class="beneficios-label">Beneficios</p>
+            <p class="beneficios">Acesso a consultas, exames, hospitais e pronto atendimento, com Rede Credenciada complementar a nossa Rede Propria.</p>
+            <div class="card-buttons">
+              <a href="#" class="btn btn-orange">Contrate agora</a>
+              <a href="#" class="btn btn-ghost">Conheca mais</a>
+            </div>
+          </div>
+
+          <!-- Klini 600 -->
+          <div class="plano-card fade-in">
+            <span class="overline">Plano</span>
+            <h3>Klini 600</h3>
+            <p class="para-quem">Uma solucao completa para quem valoriza seguranca e atendimento de qualidade, a qualquer hora e em qualquer lugar.</p>
+            <p class="beneficios-label">Beneficios</p>
+            <p class="beneficios">Acesso a consultas, exames, hospitais e pronto atendimento. Ampla rede medica e de especialidades.</p>
+            <div class="card-buttons">
+              <a href="#" class="btn btn-orange">Contrate agora</a>
+              <a href="#" class="btn btn-ghost">Conheca mais</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3. HOSPITAIS CREDENCIADOS ===== -->
+    <section class="hospitais section-padding" id="hospitais">
+      <div class="container text-center">
+        <p class="section-overline">Rede Credenciada</p>
+        <h2 class="section-title">Nossa Rede de Hospitais Parceiros</h2>
+        <p class="section-subtitle centered">Alem da nossa rede propria, voce conta com hospitais credenciados de referencia para garantir excelencia no seu atendimento.</p>
+      </div>
+      <div class="container">
+        <div class="hospitais-layout">
+          <div class="hospital-card-fixo fade-in">
+            <h3>Excelencia em Saude</h3>
+            <p>Selecionamos rigorosamente as melhores instituicoes do estado para garantir que voce tenha suporte de alta complexidade, internacoes, cirurgias e pronto-atendimento com o maximo de seguranca.</p>
+          </div>
+          <div class="hospital-foto-card fade-in">
+            <div class="placeholder" style="aspect-ratio:4/3;">🏥 Fachada Hospital 1</div>
+            <p class="hospital-name">Hospital 1</p>
+          </div>
+          <div class="hospital-foto-card fade-in">
+            <div class="placeholder" style="aspect-ratio:4/3;">🏥 Fachada Hospital 2</div>
+            <p class="hospital-name">Hospital 2</p>
+          </div>
+          <div class="hospital-foto-card fade-in">
+            <div class="placeholder" style="aspect-ratio:4/3;">🏥 Fachada Hospital 3</div>
+            <p class="hospital-name">Hospital 3</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4. VSL VIDEO ===== -->
+    <section class="vsl section-padding" id="vsl">
+      <div class="container text-center">
+        <p class="section-overline">Video</p>
+        <h2 class="section-title">Conheca a Klini Saude</h2>
+        <p class="section-subtitle centered">Assista ao video e entenda como a Klini esta transformando o acesso a saude com tecnologia, estrutura propria e atendimento humanizado.</p>
+      </div>
+      <div class="container">
+        <div class="vsl-wrapper fade-in">
+          <div class="vsl-video-container">
+            <div class="placeholder" style="background:var(--color-teal-40);">
+              <div class="play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+              <span>▶️ Video Institucional Klini Saude</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5. DIFERENCIAIS ===== -->
+    <section class="diferenciais section-padding" id="diferenciais">
+      <div class="container text-center">
+        <p class="section-overline">Diferenciais</p>
+        <h2 class="section-title">Por que milhares de pessoas escolhem a Klini?</h2>
+      </div>
+      <div class="container">
+        <div class="diferenciais-grid">
+          <div class="diferencial-card fade-in">
+            <div class="diferencial-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#259591" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h3>Rede propria de hospitais e centros medicos</h3>
+            <p>Estrutura propria com hospitais, centros medicos e laboratorios em toda a cidade do Rio de Janeiro.</p>
+          </div>
+          <div class="diferencial-card fade-in">
+            <div class="diferencial-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#259591" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3>Profissionais qualificados em diversas especialidades</h3>
+            <p>Equipe medica altamente capacitada para oferecer o melhor atendimento em todas as especialidades.</p>
+          </div>
+          <div class="diferencial-card fade-in">
+            <div class="diferencial-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#259591" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </div>
+            <h3>Aplicativo para gestao do plano</h3>
+            <p>Gerencie seu plano, agende consultas e acompanhe exames diretamente pelo app.</p>
+          </div>
+          <div class="diferencial-card fade-in">
+            <div class="diferencial-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#259591" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3>Telemedicina para consultas online</h3>
+            <p>Consulte-se com especialistas sem sair de casa, com praticidade e seguranca.</p>
+          </div>
+          <div class="diferencial-card fade-in">
+            <div class="diferencial-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#259591" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <h3>Atendimento agil e descomplicado</h3>
+            <p>Processos simplificados para que voce tenha acesso rapido ao cuidado que precisa.</p>
+          </div>
+          <div class="diferencial-card fade-in">
+            <div class="diferencial-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#259591" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h3>Cuidado com foco em prevencao e bem-estar</h3>
+            <p>Programas de saude preventiva para voce cuidar do corpo e da mente com acompanhamento continuo.</p>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-row fade-in">
+          <div class="stat-item">
+            <div class="stat-number">10</div>
+            <div class="stat-label">Hospitais</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">10</div>
+            <div class="stat-label">Centros Medicos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">30+</div>
+            <div class="stat-label">Especialidades</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6. DEPOIMENTOS ===== -->
+    <section class="depoimentos section-padding" id="depoimentos">
+      <div class="container text-center">
+        <p class="section-overline">Depoimentos</p>
+        <h2 class="section-title">O cuidado que faz a diferenca no dia a dia.</h2>
+      </div>
+      <div class="container">
+        <div class="depoimentos-carousel" id="carouselTrack">
+          <div class="depoimento-card fade-in">
+            <div class="aspas">"</div>
+            <div class="placeholder">📷 Depoimento em video ou print de conversa 1</div>
+            <div class="depoimento-author">
+              <div class="depoimento-avatar">👤</div>
+              <div>
+                <p class="depoimento-name">Beneficiario 1</p>
+                <p class="depoimento-plan">Klini 200</p>
+              </div>
+            </div>
+          </div>
+          <div class="depoimento-card fade-in">
+            <div class="aspas">"</div>
+            <div class="placeholder">📷 Depoimento em video ou print de conversa 2</div>
+            <div class="depoimento-author">
+              <div class="depoimento-avatar">👤</div>
+              <div>
+                <p class="depoimento-name">Beneficiario 2</p>
+                <p class="depoimento-plan">Klini 400</p>
+              </div>
+            </div>
+          </div>
+          <div class="depoimento-card fade-in">
+            <div class="aspas">"</div>
+            <div class="placeholder">📷 Depoimento em video ou print de conversa 3</div>
+            <div class="depoimento-author">
+              <div class="depoimento-avatar">👤</div>
+              <div>
+                <p class="depoimento-name">Beneficiario 3</p>
+                <p class="depoimento-plan">Klini 600</p>
+              </div>
+            </div>
+          </div>
+          <div class="depoimento-card fade-in">
+            <div class="aspas">"</div>
+            <div class="placeholder">📷 Depoimento em video ou print de conversa 4</div>
+            <div class="depoimento-author">
+              <div class="depoimento-avatar">👤</div>
+              <div>
+                <p class="depoimento-name">Beneficiario 4</p>
+                <p class="depoimento-plan">Klini Rede Casa</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-dots" id="carouselDots">
+          <button class="carousel-dot active" data-index="0" aria-label="Slide 1"></button>
+          <button class="carousel-dot" data-index="1" aria-label="Slide 2"></button>
+          <button class="carousel-dot" data-index="2" aria-label="Slide 3"></button>
+          <button class="carousel-dot" data-index="3" aria-label="Slide 4"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 7. SOBRE A KLINI ===== -->
+    <section class="sobre section-padding" id="sobre">
+      <div class="container">
+        <div class="sobre-text fade-in">
+          <p class="section-overline">Sobre nos</p>
+          <h2>Prazer, Klini Saude.</h2>
+          <p>Somos a melhor escolha que o carioca pode fazer para cuidar de si mesmo e da sua familia. Isso porque estamos em todos os lugares da cidade: temos a maior e mais completa <strong>Rede Propria do Rio</strong>, contando com <strong>10 hospitais, 10 Centros Medicos, 3 Centros de Fisioterapia e 2 Centro de Terapias Especiais</strong>, alem de laboratorios de ponta, como COPI e o 3D Diagnosticos por Imagem.</p>
+          <p>Nosso compromisso e oferecer um tratamento de alta qualidade, conduzido por profissionais altamente capacitados, que valorizam o atendimento individual e humanizado. E o melhor de tudo: com o <strong>melhor custo-beneficio do mercado</strong>. Confie em nos para cuidar do que realmente importa: a sua saude!</p>
+        </div>
+        <div class="placeholder sobre-image fade-in">📷 Foto institucional Klini Saude</div>
+      </div>
+    </section>
+
+    <!-- ===== CTA FINAL ===== -->
+    <section class="cta-final section-padding" id="contato">
+      <div class="container">
+        <h2>Cuide da sua saude com quem entende de cuidado.</h2>
+        <p>Fale com um consultor e encontre o plano ideal para voce e sua familia.</p>
+        <a href="#" class="btn btn-orange">Fale com um consultor</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="placeholder">Logo Klini Saude</div>
+          <p class="tagline">Cuidando da saude do carioca com excelencia, tecnologia e humanizacao.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" aria-label="YouTube">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Planos</h4>
+          <a href="#">Klini Rede Casa</a>
+          <a href="#">Klini Ambulatorial</a>
+          <a href="#">Klini 200</a>
+          <a href="#">Klini 400</a>
+          <a href="#">Klini 600</a>
+        </div>
+        <div class="footer-col">
+          <h4>Institucional</h4>
+          <a href="#">Sobre nos</a>
+          <a href="#">Rede credenciada</a>
+          <a href="#">Trabalhe conosco</a>
+          <a href="#">Blog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <a href="#">Central de atendimento</a>
+          <a href="#">WhatsApp</a>
+          <a href="#">Ouvidoria</a>
+          <a href="#">SAC</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Klini Saude. Todos os direitos reservados. ANS — Registro 000000.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== WHATSAPP FLOAT ===== -->
+  <a href="#" class="whatsapp-float" aria-label="Fale conosco pelo WhatsApp" title="WhatsApp">
+    <svg viewBox="0 0 32 32"><path d="M16.004 0h-.008C7.174 0 0 7.176 0 16.004c0 3.5 1.132 6.744 3.054 9.378L1.054 31.15l5.96-1.968A15.905 15.905 0 0 0 16.004 32C24.826 32 32 24.826 32 16.004S24.826 0 16.004 0zm9.314 22.608c-.39 1.1-2.272 2.104-3.148 2.19-.876.084-1.694.396-5.714-1.19-4.838-1.908-7.906-6.85-8.144-7.17-.238-.318-1.946-2.588-1.946-4.936 0-2.35 1.232-3.504 1.668-3.984.438-.478.954-.598 1.272-.598.318 0 .636.002.914.016.294.016.688-.112 1.076.82.39.934 1.326 3.246 1.444 3.484.116.238.194.516.04.834-.158.318-.236.516-.476.794-.238.278-.5.62-.714.832-.238.238-.486.496-.21.974.278.478 1.234 2.034 2.65 3.296 1.82 1.622 3.354 2.126 3.832 2.364.478.238.756.2 1.034-.12.278-.318 1.192-1.39 1.51-1.868.318-.478.636-.398 1.074-.238.438.158 2.75 1.296 3.228 1.532.478.238.796.358.914.556.116.196.116 1.15-.274 2.25z"/></svg>
+  </a>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    // Navbar scroll shadow
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+
+    function toggleMenu() {
+      const isOpen = mobileMenu.classList.toggle('open');
+      mobileOverlay.classList.toggle('open', isOpen);
+      hamburger.classList.toggle('active', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+    mobileOverlay.addEventListener('click', toggleMenu);
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('open')) toggleMenu();
+      });
+    });
+
+    // Fade-in on scroll (IntersectionObserver)
+    const fadeEls = document.querySelectorAll('.fade-in');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      fadeEls.forEach(el => observer.observe(el));
+    } else {
+      fadeEls.forEach(el => el.classList.add('visible'));
+    }
+
+    // Carousel dots
+    const track = document.getElementById('carouselTrack');
+    const dots = document.querySelectorAll('.carousel-dot');
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const idx = parseInt(dot.dataset.index);
+        const cards = track.querySelectorAll('.depoimento-card');
+        if (cards[idx]) {
+          cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        }
+      });
+    });
+
+    track.addEventListener('scroll', () => {
+      const scrollLeft = track.scrollLeft;
+      const cardWidth = track.querySelector('.depoimento-card').offsetWidth + 24; // gap
+      const activeIdx = Math.round(scrollLeft / cardWidth);
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === activeIdx);
+      });
+    }, { passive: true });
+  </script>
+
+</body>
+</html>
