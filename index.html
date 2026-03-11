@@ -604,6 +604,11 @@
       -webkit-overflow-scrolling: touch;
       padding-bottom: var(--space-md);
       scrollbar-width: none;
+      cursor: grab;
+      user-select: none;
+    }
+    .planos-carousel:active {
+      cursor: grabbing;
     }
     .planos-carousel::-webkit-scrollbar {
       display: none;
@@ -1355,13 +1360,7 @@
           </div>
 
         </div>
-        <div class="planos-dots" id="planosDots">
-          <button class="planos-dot active" data-index="0" aria-label="Plano 1"></button>
-          <button class="planos-dot" data-index="1" aria-label="Plano 2"></button>
-          <button class="planos-dot" data-index="2" aria-label="Plano 3"></button>
-          <button class="planos-dot" data-index="3" aria-label="Plano 4"></button>
-          <button class="planos-dot" data-index="4" aria-label="Plano 5"></button>
-        </div>
+        <div class="planos-dots" id="planosDots"></div>
       </div>
     </section>
 
@@ -1673,31 +1672,68 @@
       fadeEls.forEach(el => el.classList.add('visible'));
     }
 
-    // Planos carousel dots
+    // Planos carousel — drag to scroll + dots
     const planosTrack = document.getElementById('planosTrack');
-    const planosDots = document.querySelectorAll('.planos-dot');
+    const planosDotsContainer = document.getElementById('planosDots');
 
     if (planosTrack) {
-      planosDots.forEach(dot => {
-        dot.addEventListener('click', () => {
-          const idx = parseInt(dot.dataset.index);
-          const cards = planosTrack.querySelectorAll('.plano-card');
-          if (cards[idx]) {
-            cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-          }
-        });
+      // Drag to scroll
+      let isDragging = false, startX, scrollStart;
+      planosTrack.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.pageX - planosTrack.offsetLeft;
+        scrollStart = planosTrack.scrollLeft;
+        planosTrack.style.scrollSnapType = 'none';
       });
+      planosTrack.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - planosTrack.offsetLeft;
+        planosTrack.scrollLeft = scrollStart - (x - startX);
+      });
+      const stopDrag = () => {
+        if (isDragging) {
+          isDragging = false;
+          planosTrack.style.scrollSnapType = 'x mandatory';
+        }
+      };
+      planosTrack.addEventListener('mouseup', stopDrag);
+      planosTrack.addEventListener('mouseleave', stopDrag);
+
+      // Build dots based on visible "pages"
+      function buildPlanosDots() {
+        const cards = planosTrack.querySelectorAll('.plano-card');
+        if (!cards.length) return;
+        const trackWidth = planosTrack.offsetWidth;
+        const cardWidth = cards[0].offsetWidth + 24; // card + gap
+        const visibleCards = Math.floor(trackWidth / cardWidth) || 1;
+        const totalPages = Math.max(1, cards.length - visibleCards + 1);
+
+        planosDotsContainer.innerHTML = '';
+        for (let i = 0; i < totalPages; i++) {
+          const btn = document.createElement('button');
+          btn.className = 'planos-dot' + (i === 0 ? ' active' : '');
+          btn.setAttribute('aria-label', 'Grupo ' + (i + 1));
+          btn.dataset.index = i;
+          btn.addEventListener('click', () => {
+            if (cards[i]) {
+              cards[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+            }
+          });
+          planosDotsContainer.appendChild(btn);
+        }
+      }
+      buildPlanosDots();
+      window.addEventListener('resize', buildPlanosDots);
 
       planosTrack.addEventListener('scroll', () => {
-        const scrollLeft = planosTrack.scrollLeft;
         const card = planosTrack.querySelector('.plano-card');
-        if (card) {
-          const cardWidth = card.offsetWidth + 24;
-          const activeIdx = Math.round(scrollLeft / cardWidth);
-          planosDots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === activeIdx);
-          });
-        }
+        if (!card) return;
+        const cardWidth = card.offsetWidth + 24;
+        const activeIdx = Math.round(planosTrack.scrollLeft / cardWidth);
+        planosDotsContainer.querySelectorAll('.planos-dot').forEach((dot, i) => {
+          dot.classList.toggle('active', i === activeIdx);
+        });
       }, { passive: true });
     }
 
