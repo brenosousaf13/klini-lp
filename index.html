@@ -487,150 +487,321 @@
       pointer-events: auto;
     }
 
-    /* ===== 2. HERO ===== */
+    /* ===== 2. HERO BANNER ===== */
     .hero {
       padding-top: 72px;
-      background: linear-gradient(135deg, #259591 0%, #6AA7AE 100%);
-      min-height: 520px;
-      display: flex;
-      align-items: center;
       position: relative;
       overflow: hidden;
     }
-    .hero .container {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-xl);
-      align-items: center;
-      padding-top: var(--space-xxl);
-      padding-bottom: var(--space-xxl);
+    .hero-slider {
+      position: relative;
+      width: 100%;
+      min-height: 500px;
     }
     @media (min-width: 768px) {
-      .hero .container {
-        grid-template-columns: 1fr 1fr;
-        padding-top: var(--space-xxxl);
-        padding-bottom: var(--space-xxxl);
-      }
-    }
-    .hero-content {
-      color: var(--color-white);
-    }
-    .hero-content h1 {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 32px;
-      line-height: 1.2;
-      margin-bottom: var(--space-lg);
-    }
-    @media (min-width: 768px) {
-      .hero-content h1 { font-size: 44px; }
+      .hero-slider { min-height: 600px; }
     }
     @media (min-width: 1024px) {
-      .hero-content h1 { font-size: 52px; }
+      .hero-slider { min-height: 660px; }
     }
-    .hero-content p {
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      display: flex;
+      align-items: center;
+    }
+    .hero-slide.active {
+      opacity: 1;
+      position: relative;
+    }
+    .hero-slide-bg {
+      position: absolute;
+      inset: 0;
+      background: var(--color-teal-20);
+      border: none;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--color-teal);
+    }
+    .hero-slide-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.05) 100%);
+    }
+    .hero-slide-content {
+      position: relative;
+      z-index: 2;
+      color: var(--color-white);
+      max-width: 560px;
+      padding: var(--space-xxl) var(--space-md);
+    }
+    @media (min-width: 768px) {
+      .hero-slide-content {
+        padding: var(--space-xxxl) var(--space-lg);
+        max-width: 600px;
+      }
+    }
+    @media (min-width: 1280px) {
+      .hero-slide-content {
+        padding-left: calc((100vw - 1200px) / 2);
+        max-width: calc(560px + (100vw - 1200px) / 2);
+      }
+    }
+    .hero-slide-content h1 {
       font-family: var(--font-body);
-      font-size: 17px;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 30px;
+      line-height: 1.25;
+      margin-bottom: var(--space-lg);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    }
+    @media (min-width: 768px) {
+      .hero-slide-content h1 { font-size: 40px; }
+    }
+    @media (min-width: 1024px) {
+      .hero-slide-content h1 { font-size: 48px; }
+    }
+    .hero-slide-content p {
+      font-family: var(--font-body);
+      font-size: 16px;
       line-height: 1.7;
-      opacity: 0.92;
+      opacity: 0.94;
       margin-bottom: var(--space-xl);
-      max-width: 480px;
+      max-width: 440px;
     }
     .hero-buttons {
       display: flex;
       gap: var(--space-md);
       flex-wrap: wrap;
+      margin-bottom: var(--space-xl);
     }
-    .hero-image {
-      width: 100%;
-      aspect-ratio: 4/3;
-      min-height: 280px;
+    .hero-badges {
+      display: flex;
+      gap: var(--space-lg);
+      flex-wrap: wrap;
+      align-items: center;
     }
-    @media (min-width: 768px) {
-      .hero-image {
-        aspect-ratio: 3/4;
-        min-height: 400px;
-      }
+    .hero-badge {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--color-white);
+      opacity: 0.92;
+    }
+    .hero-badge svg {
+      flex-shrink: 0;
+    }
+    .hero-badge strong {
+      font-weight: 700;
+    }
+
+    /* Hero arrows */
+    .hero-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-full);
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(4px);
+      border: 1.5px solid rgba(255,255,255,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-default);
+      color: var(--color-white);
+    }
+    .hero-arrow:hover {
+      background: rgba(255,255,255,0.32);
+    }
+    .hero-arrow--prev { left: var(--space-md); }
+    .hero-arrow--next { right: var(--space-md); }
+    @media (min-width: 1024px) {
+      .hero-arrow--prev { left: var(--space-xl); }
+      .hero-arrow--next { right: var(--space-xl); }
+    }
+    .hero-arrow svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    /* Hero dots */
+    .hero-dots {
+      position: absolute;
+      bottom: var(--space-lg);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      gap: var(--space-xs);
+    }
+    .hero-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: var(--radius-full);
+      background: rgba(255,255,255,0.4);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition-default);
+    }
+    .hero-dot.active {
+      background: var(--color-white);
+      width: 28px;
+      border-radius: 5px;
     }
 
     /* ===== 3. PLANOS ===== */
     .planos {
-      background: var(--color-bg-light);
+      background: var(--color-white);
+      position: relative;
     }
-    .planos-grid {
+    .planos .container {
+      position: relative;
+    }
+    .planos-header {
+      margin-bottom: var(--space-xl);
+    }
+    .planos-header .section-title {
+      font-size: 26px;
+    }
+    .planos-header .section-title strong {
+      font-weight: 700;
+    }
+    @media (min-width: 768px) {
+      .planos-header .section-title { font-size: 32px; }
+    }
+    .planos-header .section-subtitle {
+      margin-top: var(--space-sm);
+    }
+    .planos-groups {
       display: grid;
       grid-template-columns: 1fr;
-      gap: var(--space-lg);
-      margin-top: var(--space-xl);
+      gap: var(--space-xl);
     }
-    @media (min-width: 640px) {
-      .planos-grid { grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 768px) {
+      .planos-groups {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-xxl);
+      }
     }
-    @media (min-width: 1024px) {
-      .planos-grid { grid-template-columns: repeat(3, 1fr); }
+    .planos-group-label {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-gray-medium);
+      padding-bottom: var(--space-sm);
+      border-bottom: 2px solid var(--color-gray-light);
+      margin-bottom: var(--space-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
     }
-    .plano-card {
+    .planos-group-label::before {
+      content: '';
+      width: 20px;
+      height: 2px;
+      background: var(--color-gray-medium);
+    }
+    .planos-cards-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+    @media (min-width: 480px) {
+      .planos-cards-row {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+    }
+    .plano-card-mini {
       background: var(--color-white);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-md);
-      padding: var(--space-xl) var(--space-lg);
-      border-top: 4px solid var(--color-teal);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-gray-light);
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
       transition: var(--transition-default);
       display: flex;
       flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
     }
-    .plano-card:hover {
+    .plano-card-mini:hover {
       transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-teal-40);
     }
-    .plano-card .overline {
+    .plano-card-mini.empresa {
+      border-color: var(--color-teal-40);
+      background: var(--color-teal-20);
+    }
+    .plano-card-mini.empresa:hover {
+      border-color: var(--color-teal);
+    }
+    .plano-card-mini .plano-label {
       font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--color-teal);
-      margin-bottom: var(--space-xs);
+      font-weight: 400;
+      font-size: 14px;
+      color: var(--color-gray-dark);
     }
-    .plano-card h3 {
+    .plano-card-mini .plano-name {
       font-family: var(--font-heading);
       font-weight: 700;
       font-size: 22px;
       color: var(--color-black);
-      margin-bottom: var(--space-sm);
       line-height: 1.2;
     }
-    .plano-card .para-quem {
-      font-family: var(--font-body);
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--color-gray-dark);
-      margin-bottom: var(--space-md);
+    .plano-card-mini.empresa .plano-name {
+      color: var(--color-teal);
     }
-    .plano-card .beneficios-label {
-      font-family: var(--font-heading);
-      font-weight: 600;
+    .plano-card-mini .btn {
+      font-size: 13px;
+      padding: 10px 22px;
+      width: 100%;
+      max-width: 180px;
+    }
+    .plano-card-mini .plano-link {
+      font-family: var(--font-body);
       font-size: 13px;
       color: var(--color-teal);
-      margin-bottom: var(--space-xxs);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: var(--transition-fast);
     }
-    .plano-card .beneficios {
-      font-family: var(--font-body);
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--color-gray-dark);
-      margin-bottom: var(--space-lg);
-      flex: 1;
+    .plano-card-mini .plano-link:hover {
+      color: #1E7B78;
     }
-    .plano-card .card-buttons {
-      display: flex;
-      gap: var(--space-sm);
-      flex-wrap: wrap;
-      margin-top: auto;
+    .plano-card-mini.empresa .plano-link {
+      color: var(--color-teal);
     }
-    .plano-card .card-buttons .btn {
-      font-size: 13px;
-      padding: 10px 20px;
+
+    /* Decorative chevrons */
+    .planos-deco {
+      position: absolute;
+      right: -40px;
+      bottom: -20px;
+      opacity: 0.06;
+      pointer-events: none;
+    }
+    .planos-deco svg {
+      width: 180px;
+      height: 180px;
+      fill: var(--color-teal);
     }
 
     /* ===== 4. HOSPITAIS ===== */
@@ -1154,17 +1325,89 @@
 
     <!-- ===== 1. HERO ===== -->
     <section class="hero" id="hero">
-      <div class="container">
-        <div class="hero-content">
-          <h1>Sua saude merece mais cuidado, acesso e tranquilidade.</h1>
-          <p>Conheca os planos da Klini Saude e tenha acesso a consultas, exames, hospitais e telemedicina com excelente custo-beneficio.</p>
-          <div class="hero-buttons">
-            <a href="#planos" class="btn btn-orange">Contrate agora</a>
-            <a href="#planos" class="btn btn-white">Conheca os planos</a>
+      <div class="hero-slider">
+        <!-- Slide 1 -->
+        <div class="hero-slide active">
+          <div class="hero-slide-bg">📷 Banner 1 — Família sorrindo ao ar livre</div>
+          <div class="hero-slide-content">
+            <h1>Cuidar de quem você ama é a nossa prioridade</h1>
+            <p>Você e sua família merecem o melhor. Escolha o plano de saúde que é referência nacional.</p>
+            <div class="hero-buttons">
+              <a href="#planos" class="btn btn-primary">Contrate agora</a>
+              <a href="#planos" class="btn btn-secondary" style="border-color:#fff;color:#fff;">Conheça os planos</a>
+            </div>
+            <div class="hero-badges">
+              <div class="hero-badge">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span><strong>Tranquilidade</strong> com limitador mensal de gastos</span>
+              </div>
+              <div class="hero-badge">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span><strong>Pronto-Atendimento</strong> 24 horas</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="placeholder hero-image">
-          <span>📷 Foto do Zico</span>
+
+        <!-- Slide 2 -->
+        <div class="hero-slide">
+          <div class="hero-slide-bg">📷 Banner 2 — Zico, embaixador Klini Saúde</div>
+          <div class="hero-slide-content">
+            <h1>Sua saúde merece mais cuidado, acesso e tranquilidade.</h1>
+            <p>Conheça os planos da Klini Saúde e tenha acesso a consultas, exames, hospitais e telemedicina com excelente custo-benefício.</p>
+            <div class="hero-buttons">
+              <a href="#planos" class="btn btn-orange">Contrate agora</a>
+              <a href="#planos" class="btn btn-secondary" style="border-color:#fff;color:#fff;">Conheça os planos</a>
+            </div>
+            <div class="hero-badges">
+              <div class="hero-badge">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                <span><strong>Telemedicina</strong> inclusa em todos os planos</span>
+              </div>
+              <div class="hero-badge">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+                <span><strong>Planos</strong> individuais, familiares e empresariais</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="hero-slide">
+          <div class="hero-slide-bg">📷 Banner 3 — Profissional de saúde acolhendo paciente</div>
+          <div class="hero-slide-content">
+            <h1>Rede própria de hospitais e centros médicos no Rio.</h1>
+            <p>Atendimento humanizado perto de você, com hospitais próprios e rede credenciada de qualidade.</p>
+            <div class="hero-buttons">
+              <a href="#hospitais" class="btn btn-primary">Conheça a rede</a>
+              <a href="#planos" class="btn btn-secondary" style="border-color:#fff;color:#fff;">Ver planos</a>
+            </div>
+            <div class="hero-badges">
+              <div class="hero-badge">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span><strong>Hospitais próprios</strong> no Rio de Janeiro</span>
+              </div>
+              <div class="hero-badge">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                <span><strong>Cuidado humanizado</strong> para toda a família</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation arrows -->
+        <button class="hero-arrow hero-arrow--prev" aria-label="Slide anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="hero-arrow hero-arrow--next" aria-label="Próximo slide">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
+        </button>
+
+        <!-- Dots -->
+        <div class="hero-dots">
+          <button class="hero-dot active" aria-label="Slide 1"></button>
+          <button class="hero-dot" aria-label="Slide 2"></button>
+          <button class="hero-dot" aria-label="Slide 3"></button>
         </div>
       </div>
     </section>
@@ -1172,79 +1415,59 @@
     <!-- ===== 2. PLANOS ===== -->
     <section class="planos section-padding" id="planos">
       <div class="container text-center">
-        <p class="section-overline">Nossos Planos</p>
-        <h2 class="section-title">Planos pensados para diferentes necessidades</h2>
-        <p class="section-subtitle centered">Seja para voce, sua familia ou sua empresa, nos temos o plano que cabe perfeitamente na sua necessidade.</p>
+        <h2 class="section-title">Escolha o <strong>plano de saúde ideal</strong></h2>
+        <p class="section-subtitle centered">Seja para <strong>você, sua família ou empresa</strong>, nós temos o plano que cabe perfeitamente na sua necessidade e bolso.</p>
       </div>
       <div class="container">
-        <div class="planos-grid">
-
-          <!-- Klini Rede Casa -->
-          <div class="plano-card fade-in">
-            <span class="overline">Plano</span>
-            <h3>Klini Rede Casa</h3>
-            <p class="para-quem">O Klini Rede Casa Hospitalar e a escolha ideal para quem quer estar segurado nas horas mais importantes.</p>
-            <p class="beneficios-label">Beneficios</p>
-            <p class="beneficios">Acesso a pronto atendimento e internacoes nos hospitais da rede propria. Cobertura regional hospitalar e obstetrica.</p>
-            <div class="card-buttons">
-              <a href="#" class="btn btn-orange">Contrate agora</a>
-              <a href="#" class="btn btn-ghost">Conheca mais</a>
+        <div class="planos-groups fade-in">
+          <!-- Grupo Pessoa Física -->
+          <div>
+            <div class="planos-group-label">Para você e sua família</div>
+            <div class="planos-cards-row">
+              <div class="plano-card-mini">
+                <span class="plano-label">Plano</span>
+                <span class="plano-name">Rede Casa</span>
+                <a href="#" class="btn btn-primary">Contrate agora</a>
+                <a href="#" class="plano-link">ou conheça mais</a>
+              </div>
+              <div class="plano-card-mini">
+                <span class="plano-label">Plano</span>
+                <span class="plano-name">Ambulatorial</span>
+                <a href="#" class="btn btn-primary">Contrate agora</a>
+                <a href="#" class="plano-link">ou conheça mais</a>
+              </div>
+              <div class="plano-card-mini">
+                <span class="plano-label">Plano</span>
+                <span class="plano-name">Klini 200</span>
+                <a href="#" class="btn btn-primary">Contrate agora</a>
+                <a href="#" class="plano-link">ou conheça mais</a>
+              </div>
             </div>
           </div>
-
-          <!-- Klini Ambulatorial -->
-          <div class="plano-card fade-in">
-            <span class="overline">Plano</span>
-            <h3>Klini Ambulatorial</h3>
-            <p class="para-quem">O Klini Ambulatorial e feito para quem quer cuidar da saude de forma ativa sem custar muito.</p>
-            <p class="beneficios-label">Beneficios</p>
-            <p class="beneficios">Acesso a toda a rede de Centros Medicos Klini e permanencia de 12h em pronto atendimento em toda a Rede Casa de Hospitais.</p>
-            <div class="card-buttons">
-              <a href="#" class="btn btn-orange">Contrate agora</a>
-              <a href="#" class="btn btn-ghost">Conheca mais</a>
+          <!-- Grupo Empresarial -->
+          <div>
+            <div class="planos-group-label">Para a sua empresa</div>
+            <div class="planos-cards-row">
+              <div class="plano-card-mini empresa">
+                <span class="plano-label">Plano</span>
+                <span class="plano-name">Klini 400</span>
+                <a href="#" class="btn btn-primary">Contrate agora</a>
+                <a href="#" class="plano-link">ou conheça mais</a>
+              </div>
+              <div class="plano-card-mini empresa">
+                <span class="plano-label">Plano</span>
+                <span class="plano-name">Klini 600</span>
+                <a href="#" class="btn btn-primary">Contrate agora</a>
+                <a href="#" class="plano-link">ou conheça mais</a>
+              </div>
             </div>
           </div>
-
-          <!-- Klini 200 -->
-          <div class="plano-card fade-in">
-            <span class="overline">Plano</span>
-            <h3>Klini 200</h3>
-            <p class="para-quem">O Klini 200 e a escolha ideal para quem precisa de um plano de qualidade e vive no agito do dia-a-dia do trabalho e da cidade.</p>
-            <p class="beneficios-label">Beneficios</p>
-            <p class="beneficios">Acesso a consultas, exames, hospitais e pronto atendimento. Rede Credenciada complementar a nossa Rede Propria.</p>
-            <div class="card-buttons">
-              <a href="#" class="btn btn-orange">Contrate agora</a>
-              <a href="#" class="btn btn-ghost">Conheca mais</a>
-            </div>
-          </div>
-
-          <!-- Klini 400 -->
-          <div class="plano-card fade-in">
-            <span class="overline">Plano</span>
-            <h3>Klini 400</h3>
-            <p class="para-quem">O Klini 400 e a escolha ideal para quem precisa de um plano que esteja presente em varias areas de atendimento e uma rede mais ampla.</p>
-            <p class="beneficios-label">Beneficios</p>
-            <p class="beneficios">Acesso a consultas, exames, hospitais e pronto atendimento, com Rede Credenciada complementar a nossa Rede Propria.</p>
-            <div class="card-buttons">
-              <a href="#" class="btn btn-orange">Contrate agora</a>
-              <a href="#" class="btn btn-ghost">Conheca mais</a>
-            </div>
-          </div>
-
-          <!-- Klini 600 -->
-          <div class="plano-card fade-in">
-            <span class="overline">Plano</span>
-            <h3>Klini 600</h3>
-            <p class="para-quem">Uma solucao completa para quem valoriza seguranca e atendimento de qualidade, a qualquer hora e em qualquer lugar.</p>
-            <p class="beneficios-label">Beneficios</p>
-            <p class="beneficios">Acesso a consultas, exames, hospitais e pronto atendimento. Ampla rede medica e de especialidades.</p>
-            <div class="card-buttons">
-              <a href="#" class="btn btn-orange">Contrate agora</a>
-              <a href="#" class="btn btn-ghost">Conheca mais</a>
-            </div>
-          </div>
-
         </div>
+      </div>
+
+      <!-- Decorative -->
+      <div class="planos-deco" aria-hidden="true">
+        <svg viewBox="0 0 120 120"><path d="M20 100L60 20l40 80H20z" opacity="0.5"/><path d="M40 100L80 20l40 80H40z" opacity="0.3"/></svg>
       </div>
     </section>
 
@@ -1556,28 +1779,64 @@
       fadeEls.forEach(el => el.classList.add('visible'));
     }
 
-    // Carousel dots
-    const track = document.getElementById('carouselTrack');
-    const dots = document.querySelectorAll('.carousel-dot');
+    // Hero slider
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    const heroDots = document.querySelectorAll('.hero-dot');
+    const prevBtn = document.querySelector('.hero-arrow--prev');
+    const nextBtn = document.querySelector('.hero-arrow--next');
+    let currentSlide = 0;
+    let heroInterval;
 
-    dots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        const idx = parseInt(dot.dataset.index);
-        const cards = track.querySelectorAll('.depoimento-card');
-        if (cards[idx]) {
-          cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-        }
-      });
+    function goToSlide(idx) {
+      heroSlides[currentSlide].classList.remove('active');
+      heroDots[currentSlide].classList.remove('active');
+      currentSlide = (idx + heroSlides.length) % heroSlides.length;
+      heroSlides[currentSlide].classList.add('active');
+      heroDots[currentSlide].classList.add('active');
+    }
+
+    function startHeroAutoplay() {
+      heroInterval = setInterval(() => goToSlide(currentSlide + 1), 6000);
+    }
+    function resetHeroAutoplay() {
+      clearInterval(heroInterval);
+      startHeroAutoplay();
+    }
+
+    prevBtn.addEventListener('click', () => { goToSlide(currentSlide - 1); resetHeroAutoplay(); });
+    nextBtn.addEventListener('click', () => { goToSlide(currentSlide + 1); resetHeroAutoplay(); });
+    heroDots.forEach((dot, i) => {
+      dot.addEventListener('click', () => { goToSlide(i); resetHeroAutoplay(); });
     });
+    startHeroAutoplay();
 
-    track.addEventListener('scroll', () => {
-      const scrollLeft = track.scrollLeft;
-      const cardWidth = track.querySelector('.depoimento-card').offsetWidth + 24; // gap
-      const activeIdx = Math.round(scrollLeft / cardWidth);
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === activeIdx);
+    // Depoimentos carousel dots
+    const track = document.getElementById('carouselTrack');
+    const carouselDots = document.querySelectorAll('.carousel-dot');
+
+    if (track) {
+      carouselDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const idx = parseInt(dot.dataset.index);
+          const cards = track.querySelectorAll('.depoimento-card');
+          if (cards[idx]) {
+            cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+          }
+        });
       });
-    }, { passive: true });
+
+      track.addEventListener('scroll', () => {
+        const scrollLeft = track.scrollLeft;
+        const card = track.querySelector('.depoimento-card');
+        if (card) {
+          const cardWidth = card.offsetWidth + 24;
+          const activeIdx = Math.round(scrollLeft / cardWidth);
+          carouselDots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === activeIdx);
+          });
+        }
+      }, { passive: true });
+    }
   </script>
 
 </body>
