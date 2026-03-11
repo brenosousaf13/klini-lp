@@ -593,20 +593,24 @@
     /* ===== 3. PLANOS ===== */
     .planos {
       background: var(--color-bg-light);
+      overflow: hidden;
     }
-    .planos-grid {
-      display: grid;
-      grid-template-columns: 1fr;
+    .planos-carousel {
+      display: flex;
       gap: var(--space-lg);
       margin-top: var(--space-xl);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: var(--space-md);
+      scrollbar-width: none;
     }
-    @media (min-width: 640px) {
-      .planos-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (min-width: 1024px) {
-      .planos-grid { grid-template-columns: repeat(3, 1fr); }
+    .planos-carousel::-webkit-scrollbar {
+      display: none;
     }
     .plano-card {
+      flex: 0 0 300px;
+      scroll-snap-align: start;
       background: var(--color-white);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-sm);
@@ -615,6 +619,9 @@
       transition: var(--transition-default);
       display: flex;
       flex-direction: column;
+    }
+    @media (min-width: 768px) {
+      .plano-card { flex: 0 0 340px; }
     }
     .plano-card:hover {
       transform: translateY(-4px);
@@ -689,6 +696,25 @@
     }
     .plano-card-actions .plano-link:hover {
       color: #1E7B78;
+    }
+    .planos-dots {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-xs);
+      margin-top: var(--space-lg);
+    }
+    .planos-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: var(--radius-full);
+      background: var(--color-gray-light);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition-default);
+    }
+    .planos-dot.active {
+      background: var(--color-teal);
+      width: 28px;
     }
 
     /* ===== 4. HOSPITAIS ===== */
@@ -1241,7 +1267,7 @@
         <p class="section-subtitle centered">Seja para você, sua família ou sua empresa, nós temos o plano que cabe perfeitamente na sua necessidade.</p>
       </div>
       <div class="container">
-        <div class="planos-grid">
+        <div class="planos-carousel" id="planosTrack">
 
           <!-- Klini Rede Casa -->
           <div class="plano-card fade-in">
@@ -1328,6 +1354,13 @@
             </div>
           </div>
 
+        </div>
+        <div class="planos-dots" id="planosDots">
+          <button class="planos-dot active" data-index="0" aria-label="Plano 1"></button>
+          <button class="planos-dot" data-index="1" aria-label="Plano 2"></button>
+          <button class="planos-dot" data-index="2" aria-label="Plano 3"></button>
+          <button class="planos-dot" data-index="3" aria-label="Plano 4"></button>
+          <button class="planos-dot" data-index="4" aria-label="Plano 5"></button>
         </div>
       </div>
     </section>
@@ -1638,6 +1671,34 @@
       fadeEls.forEach(el => observer.observe(el));
     } else {
       fadeEls.forEach(el => el.classList.add('visible'));
+    }
+
+    // Planos carousel dots
+    const planosTrack = document.getElementById('planosTrack');
+    const planosDots = document.querySelectorAll('.planos-dot');
+
+    if (planosTrack) {
+      planosDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const idx = parseInt(dot.dataset.index);
+          const cards = planosTrack.querySelectorAll('.plano-card');
+          if (cards[idx]) {
+            cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+          }
+        });
+      });
+
+      planosTrack.addEventListener('scroll', () => {
+        const scrollLeft = planosTrack.scrollLeft;
+        const card = planosTrack.querySelector('.plano-card');
+        if (card) {
+          const cardWidth = card.offsetWidth + 24;
+          const activeIdx = Math.round(scrollLeft / cardWidth);
+          planosDots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === activeIdx);
+          });
+        }
+      }, { passive: true });
     }
 
     // Depoimentos carousel dots
