@@ -866,14 +866,13 @@
     }
     .hospitais-layout {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-md);
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
       margin-top: var(--space-xl);
     }
     @media (min-width: 768px) {
       .hospitais-layout {
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: var(--space-lg);
       }
     }
     .hospital-card-fixo {
@@ -884,11 +883,10 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      grid-column: span 2;
+      grid-column: span 1;
     }
     @media (min-width: 768px) {
       .hospital-card-fixo {
-        grid-column: span 1;
         grid-row: span 1;
       }
     }
