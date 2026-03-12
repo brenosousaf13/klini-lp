@@ -492,9 +492,10 @@
       padding-top: 72px;
       position: relative;
       overflow: hidden;
-      min-height: 500px;
+      min-height: 88vh;
       display: flex;
       align-items: center;
+      padding-bottom: 100px;
     }
     @media (min-width: 768px) {
       .hero { min-height: 600px; padding-bottom: 120px; }
@@ -518,14 +519,19 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.28) 50%, rgba(0,0,0,0.05) 100%);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.20) 100%);
+    }
+    @media (min-width: 768px) {
+      .hero-bg::after {
+        background: linear-gradient(to right, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.28) 50%, rgba(0,0,0,0.05) 100%);
+      }
     }
     .hero-content {
       position: relative;
       z-index: 2;
       color: var(--color-white);
       max-width: 560px;
-      padding: var(--space-xxl) var(--space-md);
+      padding: var(--space-xxxl) var(--space-md) var(--space-xxl);
     }
     @media (min-width: 768px) {
       .hero-content {
@@ -543,8 +549,8 @@
       font-family: var(--font-body);
       font-weight: 700;
       font-style: italic;
-      font-size: 30px;
-      line-height: 1.25;
+      font-size: 26px;
+      line-height: 1.3;
       margin-bottom: var(--space-lg);
       text-shadow: 0 2px 8px rgba(0,0,0,0.18);
     }
@@ -567,22 +573,32 @@
       gap: var(--space-md);
       flex-wrap: wrap;
     }
+    @media (max-width: 639px) {
+      .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+      .hero-buttons .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
 
     /* ===== 3. PLANOS (overlapping hero) ===== */
     .planos {
       position: relative;
       z-index: 10;
-      margin-top: -80px;
-      padding: 0 0 var(--space-xxl);
+      margin-top: -60px;
+      padding: 0 var(--space-sm) var(--space-xxl);
     }
     @media (min-width: 768px) {
-      .planos { margin-top: -100px; }
+      .planos { margin-top: -100px; padding: 0 0 var(--space-xxl); }
     }
     .planos-box {
       background: var(--color-white);
       border-radius: var(--radius-lg);
       box-shadow: 0 8px 40px rgba(0,0,0,0.10);
-      padding: var(--space-xl) var(--space-lg) var(--space-xxl);
+      padding: var(--space-lg) var(--space-sm) var(--space-xl);
       max-width: 1100px;
       margin: 0 auto;
     }
@@ -590,8 +606,11 @@
       .planos-box { padding: var(--space-xxl) var(--space-xxl) var(--space-xxl); }
     }
     .planos-box .section-title {
-      font-size: 24px;
+      font-size: 20px;
       margin-bottom: var(--space-xs);
+    }
+    @media (min-width: 640px) {
+      .planos-box .section-title { font-size: 24px; }
     }
     .planos-box .section-title strong {
       font-weight: 800;
@@ -641,8 +660,9 @@
     .planos-arrow.prev { left: -12px; }
     .planos-arrow.next { right: -12px; }
     @media (max-width: 639px) {
-      .planos-arrow.prev { left: -4px; }
-      .planos-arrow.next { right: -4px; }
+      .planos-arrow.prev { left: 2px; }
+      .planos-arrow.next { right: 2px; }
+      .planos-arrow { width: 34px; height: 34px; }
     }
     .planos-arrow svg {
       width: 18px;
@@ -669,7 +689,11 @@
       .plano-card { flex: 0 0 270px; }
     }
     @media (max-width: 639px) {
-      .plano-card { flex: 0 0 250px; }
+      .plano-card {
+        flex: 0 0 75vw;
+        min-height: 280px;
+        padding: 40px var(--space-lg);
+      }
     }
     .plano-card:hover {
       transform: translateY(-4px);
@@ -770,10 +794,15 @@
       border-radius: var(--radius-lg);
       max-width: 520px;
       width: 100%;
-      padding: var(--space-xxl) var(--space-xl);
+      padding: var(--space-xxl) var(--space-lg);
       position: relative;
       transform: translateY(20px);
       transition: transform 0.3s ease;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    @media (min-width: 768px) {
+      .modal-content { padding: var(--space-xxl) var(--space-xl); }
     }
     .modal-overlay.open .modal-content {
       transform: translateY(0);
@@ -837,13 +866,14 @@
     }
     .hospitais-layout {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-lg);
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
       margin-top: var(--space-xl);
     }
     @media (min-width: 768px) {
       .hospitais-layout {
         grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: var(--space-lg);
       }
     }
     .hospital-card-fixo {
@@ -854,9 +884,11 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      grid-column: span 2;
     }
     @media (min-width: 768px) {
       .hospital-card-fixo {
+        grid-column: span 1;
         grid-row: span 1;
       }
     }
@@ -1009,9 +1041,12 @@
     .stat-number {
       font-family: var(--font-heading);
       font-weight: 700;
-      font-size: 40px;
+      font-size: 32px;
       color: var(--color-teal);
       line-height: 1;
+    }
+    @media (min-width: 768px) {
+      .stat-number { font-size: 40px; }
     }
     .stat-label {
       font-family: var(--font-heading);
