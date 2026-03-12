@@ -592,49 +592,75 @@
 
     /* ===== 3. PLANOS ===== */
     .planos {
-      background: var(--color-bg-light);
+      background: linear-gradient(180deg, #f0f4f4 0%, #f8fafa 100%);
       overflow: hidden;
     }
-    .planos-carousel {
-      display: flex;
+    .planos .section-overline {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--color-teal);
+      margin-bottom: var(--space-sm);
+    }
+    .planos .section-title {
+      font-size: 28px;
+    }
+    .planos .section-title strong {
+      font-weight: 800;
+    }
+    @media (min-width: 768px) {
+      .planos .section-title { font-size: 36px; }
+    }
+    .planos-grid {
+      display: grid;
+      grid-template-columns: 1fr;
       gap: var(--space-lg);
-      margin-top: var(--space-xl);
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: var(--space-md);
-      scrollbar-width: none;
-      cursor: grab;
-      user-select: none;
+      margin-top: var(--space-xxl);
     }
-    .planos-carousel:active {
-      cursor: grabbing;
+    @media (min-width: 640px) {
+      .planos-grid { grid-template-columns: repeat(2, 1fr); }
     }
-    .planos-carousel::-webkit-scrollbar {
-      display: none;
+    @media (min-width: 1024px) {
+      .planos-grid { grid-template-columns: repeat(4, 1fr); }
     }
     .plano-card {
-      flex: 0 0 300px;
-      scroll-snap-align: start;
+      position: relative;
       background: var(--color-white);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 2px 16px rgba(37, 149, 145, 0.08);
       padding: 0;
       overflow: hidden;
       transition: var(--transition-default);
       display: flex;
       flex-direction: column;
     }
-    @media (min-width: 768px) {
-      .plano-card { flex: 0 0 340px; }
-    }
     .plano-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
+      transform: scale(1.02);
+      box-shadow: 0 12px 36px rgba(37, 149, 145, 0.16);
+    }
+    .plano-card.popular {
+      border: 2px solid var(--color-orange);
+    }
+    .plano-popular-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--color-orange);
+      color: var(--color-white);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      z-index: 2;
     }
     .plano-card-header {
-      background: var(--color-teal);
-      padding: var(--space-lg) var(--space-lg) var(--space-md);
+      background: linear-gradient(135deg, var(--color-teal) 0%, #1a7a77 100%);
+      padding: var(--space-xl) var(--space-lg) var(--space-lg);
       color: var(--color-white);
       text-align: center;
     }
@@ -642,13 +668,13 @@
       font-family: var(--font-heading);
       font-weight: 400;
       font-size: 13px;
-      opacity: 0.85;
-      margin-bottom: 2px;
+      opacity: 0.8;
+      margin-bottom: 4px;
     }
     .plano-card-header h3 {
       font-family: var(--font-heading);
       font-weight: 700;
-      font-size: 24px;
+      font-size: 22px;
       line-height: 1.2;
     }
     .plano-card-body {
@@ -666,14 +692,14 @@
     }
     .plano-card-body .beneficios-label {
       font-family: var(--font-heading);
-      font-weight: 600;
+      font-weight: 700;
       font-size: 13px;
-      color: var(--color-teal);
-      margin-bottom: var(--space-xxs);
+      color: var(--color-orange);
+      margin-bottom: var(--space-xs);
     }
     .plano-card-body .beneficios {
       font-family: var(--font-body);
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.7;
       color: var(--color-gray-dark);
       margin-bottom: var(--space-lg);
@@ -691,6 +717,9 @@
       justify-content: center;
       font-size: 14px;
     }
+    .plano-card-actions .btn:hover {
+      background: #b56a1f;
+    }
     .plano-card-actions .plano-link {
       font-family: var(--font-body);
       font-size: 13px;
@@ -701,25 +730,6 @@
     }
     .plano-card-actions .plano-link:hover {
       color: #1E7B78;
-    }
-    .planos-dots {
-      display: flex;
-      justify-content: center;
-      gap: var(--space-xs);
-      margin-top: var(--space-lg);
-    }
-    .planos-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: var(--radius-full);
-      background: var(--color-gray-light);
-      border: none;
-      cursor: pointer;
-      transition: var(--transition-default);
-    }
-    .planos-dot.active {
-      background: var(--color-teal);
-      width: 28px;
     }
 
     /* ===== 4. HOSPITAIS ===== */
@@ -1257,12 +1267,12 @@
     <!-- ===== 2. PLANOS ===== -->
     <section class="planos section-padding" id="planos">
       <div class="container text-center">
-        <p class="section-overline">Nossos Planos</p>
-        <h2 class="section-title">Escolha o <strong>plano de saúde ideal</strong></h2>
+        <p class="section-overline">NOSSOS PLANOS</p>
+        <h2 class="section-title">Planos pensados para <strong>diferentes necessidades</strong></h2>
         <p class="section-subtitle centered">Seja para você, sua família ou sua empresa, nós temos o plano que cabe perfeitamente na sua necessidade.</p>
       </div>
       <div class="container">
-        <div class="planos-carousel" id="planosTrack">
+        <div class="planos-grid">
 
           <!-- Klini Rede Casa -->
           <div class="plano-card fade-in">
@@ -1298,8 +1308,9 @@
             </div>
           </div>
 
-          <!-- Klini 200 -->
-          <div class="plano-card fade-in">
+          <!-- Klini 200 — Mais Popular -->
+          <div class="plano-card popular fade-in">
+            <span class="plano-popular-badge">Mais Popular</span>
             <div class="plano-card-header">
               <span class="overline">Plano</span>
               <h3>Klini 200</h3>
@@ -1322,26 +1333,9 @@
               <h3>Klini 400</h3>
             </div>
             <div class="plano-card-body">
-              <p class="para-quem">O Klini 400 é a escolha ideal para quem precisa de um plano que esteja presente em várias áreas de atendimento e uma rede mais ampla.</p>
+              <p class="para-quem">O Klini 400 é para quem precisa de um plano com cobertura em várias áreas e rede mais ampla.</p>
               <p class="beneficios-label">Benefícios</p>
-              <p class="beneficios">Acesso a consultas, exames, hospitais e pronto atendimento, com Rede Credenciada complementar à nossa Rede Própria.</p>
-              <div class="plano-card-actions">
-                <a href="#" class="btn btn-orange">Contrate agora</a>
-                <a href="#" class="plano-link">ou conheça mais</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Klini 600 -->
-          <div class="plano-card fade-in">
-            <div class="plano-card-header">
-              <span class="overline">Plano</span>
-              <h3>Klini 600</h3>
-            </div>
-            <div class="plano-card-body">
-              <p class="para-quem">Uma solução completa para quem valoriza segurança e atendimento de qualidade, a qualquer hora e em qualquer lugar.</p>
-              <p class="beneficios-label">Benefícios</p>
-              <p class="beneficios">Acesso a consultas, exames, hospitais e pronto atendimento. Ampla rede médica e de especialidades.</p>
+              <p class="beneficios">Acesso a consultas, exames, hospitais e pronto atendimento. Rede Credenciada complementar à nossa Rede Própria.</p>
               <div class="plano-card-actions">
                 <a href="#" class="btn btn-orange">Contrate agora</a>
                 <a href="#" class="plano-link">ou conheça mais</a>
@@ -1350,7 +1344,6 @@
           </div>
 
         </div>
-        <div class="planos-dots" id="planosDots"></div>
       </div>
     </section>
 
@@ -1662,70 +1655,6 @@
       fadeEls.forEach(el => el.classList.add('visible'));
     }
 
-    // Planos carousel — drag to scroll + dots
-    const planosTrack = document.getElementById('planosTrack');
-    const planosDotsContainer = document.getElementById('planosDots');
-
-    if (planosTrack) {
-      // Drag to scroll
-      let isDragging = false, startX, scrollStart;
-      planosTrack.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        startX = e.pageX - planosTrack.offsetLeft;
-        scrollStart = planosTrack.scrollLeft;
-        planosTrack.style.scrollSnapType = 'none';
-      });
-      planosTrack.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.pageX - planosTrack.offsetLeft;
-        planosTrack.scrollLeft = scrollStart - (x - startX);
-      });
-      const stopDrag = () => {
-        if (isDragging) {
-          isDragging = false;
-          planosTrack.style.scrollSnapType = 'x mandatory';
-        }
-      };
-      planosTrack.addEventListener('mouseup', stopDrag);
-      planosTrack.addEventListener('mouseleave', stopDrag);
-
-      // Build dots based on visible "pages"
-      function buildPlanosDots() {
-        const cards = planosTrack.querySelectorAll('.plano-card');
-        if (!cards.length) return;
-        const trackWidth = planosTrack.offsetWidth;
-        const cardWidth = cards[0].offsetWidth + 24; // card + gap
-        const visibleCards = Math.floor(trackWidth / cardWidth) || 1;
-        const totalPages = Math.max(1, cards.length - visibleCards + 1);
-
-        planosDotsContainer.innerHTML = '';
-        for (let i = 0; i < totalPages; i++) {
-          const btn = document.createElement('button');
-          btn.className = 'planos-dot' + (i === 0 ? ' active' : '');
-          btn.setAttribute('aria-label', 'Grupo ' + (i + 1));
-          btn.dataset.index = i;
-          btn.addEventListener('click', () => {
-            if (cards[i]) {
-              cards[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-            }
-          });
-          planosDotsContainer.appendChild(btn);
-        }
-      }
-      buildPlanosDots();
-      window.addEventListener('resize', buildPlanosDots);
-
-      planosTrack.addEventListener('scroll', () => {
-        const card = planosTrack.querySelector('.plano-card');
-        if (!card) return;
-        const cardWidth = card.offsetWidth + 24;
-        const activeIdx = Math.round(planosTrack.scrollLeft / cardWidth);
-        planosDotsContainer.querySelectorAll('.planos-dot').forEach((dot, i) => {
-          dot.classList.toggle('active', i === activeIdx);
-        });
-      }, { passive: true });
-    }
 
     // Depoimentos carousel dots
     const track = document.getElementById('carouselTrack');
