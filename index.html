@@ -497,10 +497,10 @@
       align-items: center;
     }
     @media (min-width: 768px) {
-      .hero { min-height: 600px; }
+      .hero { min-height: 600px; padding-bottom: 120px; }
     }
     @media (min-width: 1024px) {
-      .hero { min-height: 660px; }
+      .hero { min-height: 660px; padding-bottom: 140px; }
     }
     .hero-bg {
       position: absolute;
@@ -566,144 +566,123 @@
       display: flex;
       gap: var(--space-md);
       flex-wrap: wrap;
-      margin-bottom: var(--space-xl);
-    }
-    .hero-badges {
-      display: flex;
-      gap: var(--space-lg);
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .hero-badge {
-      display: flex;
-      align-items: center;
-      gap: var(--space-xs);
-      font-family: var(--font-body);
-      font-size: 13px;
-      color: var(--color-white);
-      opacity: 0.92;
-    }
-    .hero-badge svg {
-      flex-shrink: 0;
-    }
-    .hero-badge strong {
-      font-weight: 700;
     }
 
-    /* ===== 3. PLANOS ===== */
+    /* ===== 3. PLANOS (overlapping hero) ===== */
     .planos {
-      background: linear-gradient(180deg, #f0f4f4 0%, #f8fafa 100%);
-      overflow: hidden;
+      position: relative;
+      z-index: 10;
+      margin-top: -80px;
+      padding: 0 0 var(--space-xxl);
     }
-    .planos .section-overline {
-      font-family: var(--font-heading);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--color-teal);
-      margin-bottom: var(--space-sm);
+    @media (min-width: 768px) {
+      .planos { margin-top: -100px; }
     }
-    .planos .section-title {
-      font-size: 28px;
+    .planos-box {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+      padding: var(--space-xl) var(--space-lg) var(--space-xxl);
+      max-width: 1100px;
+      margin: 0 auto;
     }
-    .planos .section-title strong {
+    @media (min-width: 768px) {
+      .planos-box { padding: var(--space-xxl) var(--space-xxl) var(--space-xxl); }
+    }
+    .planos-box .section-title {
+      font-size: 24px;
+      margin-bottom: var(--space-xs);
+    }
+    .planos-box .section-title strong {
       font-weight: 800;
     }
     @media (min-width: 768px) {
-      .planos .section-title { font-size: 36px; }
+      .planos-box .section-title { font-size: 30px; }
     }
-    .planos-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-lg);
-      margin-top: var(--space-xxl);
+    .planos-box .section-subtitle {
+      font-size: 14px;
+      max-width: 520px;
     }
-    @media (min-width: 640px) {
-      .planos-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (min-width: 1024px) {
-      .planos-grid { grid-template-columns: repeat(4, 1fr); }
-    }
-    .plano-card {
+    .planos-carousel-wrapper {
       position: relative;
+      margin-top: var(--space-xl);
+    }
+    .planos-carousel {
+      display: flex;
+      gap: var(--space-md);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: var(--space-xs) 0;
+    }
+    .planos-carousel::-webkit-scrollbar { display: none; }
+    .planos-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full);
       background: var(--color-white);
-      border-radius: var(--radius-lg);
-      box-shadow: 0 2px 16px rgba(37, 149, 145, 0.08);
-      padding: 0;
-      overflow: hidden;
+      border: 1px solid var(--color-gray-light);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
       transition: var(--transition-default);
+    }
+    .planos-arrow:hover {
+      background: var(--color-teal-20);
+      border-color: var(--color-teal);
+    }
+    .planos-arrow.prev { left: -12px; }
+    .planos-arrow.next { right: -12px; }
+    @media (max-width: 639px) {
+      .planos-arrow.prev { left: -4px; }
+      .planos-arrow.next { right: -4px; }
+    }
+    .planos-arrow svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--color-gray-dark);
+    }
+
+    /* Plan cards - compact */
+    .plano-card {
+      flex: 0 0 200px;
+      scroll-snap-align: start;
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl) var(--space-lg);
+      text-align: center;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+      transition: var(--transition-default);
+      cursor: default;
+      min-height: 220px;
+    }
+    @media (min-width: 768px) {
+      .plano-card { flex: 1 1 0; min-width: 180px; }
     }
     .plano-card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 12px 36px rgba(37, 149, 145, 0.16);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
-    .plano-card.popular {
-      border: 2px solid var(--color-orange);
-    }
-    .plano-popular-badge {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: var(--color-orange);
-      color: var(--color-white);
+    .plano-card .overline {
       font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 11px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: var(--radius-pill);
-      z-index: 2;
-    }
-    .plano-card-header {
-      background: linear-gradient(135deg, var(--color-teal) 0%, #1a7a77 100%);
-      padding: var(--space-xl) var(--space-lg) var(--space-lg);
-      color: var(--color-white);
-      text-align: center;
-    }
-    .plano-card-header .overline {
-      font-family: var(--font-heading);
-      font-weight: 400;
+      font-weight: 500;
       font-size: 13px;
-      opacity: 0.8;
-      margin-bottom: 4px;
+      opacity: 0.85;
     }
-    .plano-card-header h3 {
+    .plano-card h3 {
       font-family: var(--font-heading);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 22px;
       line-height: 1.2;
-    }
-    .plano-card-body {
-      padding: var(--space-lg);
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-    .plano-card-body .para-quem {
-      font-family: var(--font-body);
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--color-gray-dark);
-      margin-bottom: var(--space-md);
-    }
-    .plano-card-body .beneficios-label {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 13px;
-      color: var(--color-orange);
-      margin-bottom: var(--space-xs);
-    }
-    .plano-card-body .beneficios {
-      font-family: var(--font-body);
-      font-size: 13px;
-      line-height: 1.7;
-      color: var(--color-gray-dark);
-      margin-bottom: var(--space-lg);
-      flex: 1;
     }
     .plano-card-actions {
       display: flex;
@@ -713,23 +692,140 @@
       margin-top: auto;
     }
     .plano-card-actions .btn {
-      width: 100%;
-      justify-content: center;
-      font-size: 14px;
-    }
-    .plano-card-actions .btn:hover {
-      background: #b56a1f;
+      font-size: 13px;
+      padding: 10px 24px;
+      white-space: nowrap;
     }
     .plano-card-actions .plano-link {
       font-family: var(--font-body);
-      font-size: 13px;
-      color: var(--color-teal);
+      font-size: 12px;
       text-decoration: underline;
       text-underline-offset: 2px;
       transition: var(--transition-fast);
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
     }
-    .plano-card-actions .plano-link:hover {
-      color: #1E7B78;
+
+    /* Card color themes */
+    .plano-card.theme-teal {
+      background: linear-gradient(135deg, #259591 0%, #1E7B78 100%);
+      color: var(--color-white);
+    }
+    .plano-card.theme-teal .plano-link { color: rgba(255,255,255,0.8); }
+    .plano-card.theme-teal .plano-link:hover { color: #fff; }
+
+    .plano-card.theme-teal-light {
+      background: linear-gradient(135deg, #6AA7AE 0%, #51AAA7 100%);
+      color: var(--color-white);
+    }
+    .plano-card.theme-teal-light .plano-link { color: rgba(255,255,255,0.8); }
+    .plano-card.theme-teal-light .plano-link:hover { color: #fff; }
+
+    .plano-card.theme-olive {
+      background: linear-gradient(135deg, #7A9A3A 0%, #5E7D2E 100%);
+      color: var(--color-white);
+    }
+    .plano-card.theme-olive .plano-link { color: rgba(255,255,255,0.8); }
+    .plano-card.theme-olive .plano-link:hover { color: #fff; }
+
+    .plano-card.theme-green {
+      background: linear-gradient(135deg, #3B8C6E 0%, #2D7058 100%);
+      color: var(--color-white);
+    }
+    .plano-card.theme-green .plano-link { color: rgba(255,255,255,0.8); }
+    .plano-card.theme-green .plano-link:hover { color: #fff; }
+
+    .plano-card.theme-sage {
+      background: linear-gradient(135deg, #8CB4A0 0%, #6E9A86 100%);
+      color: var(--color-white);
+    }
+    .plano-card.theme-sage .plano-link { color: rgba(255,255,255,0.8); }
+    .plano-card.theme-sage .plano-link:hover { color: #fff; }
+
+    /* Modal/Popup */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: var(--space-md);
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-content {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      max-width: 520px;
+      width: 100%;
+      padding: var(--space-xxl) var(--space-xl);
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.open .modal-content {
+      transform: translateY(0);
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      border: none;
+      background: var(--color-bg-light);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--color-gray-dark);
+      transition: var(--transition-fast);
+    }
+    .modal-close:hover {
+      background: var(--color-gray-light);
+    }
+    .modal-content h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--color-teal);
+      margin-bottom: var(--space-md);
+    }
+    .modal-content .modal-para-quem {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--color-gray-dark);
+      margin-bottom: var(--space-lg);
+    }
+    .modal-content .modal-beneficios-label {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--color-orange);
+      margin-bottom: var(--space-xs);
+    }
+    .modal-content .modal-beneficios {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--color-gray-dark);
+      margin-bottom: var(--space-xl);
+    }
+    .modal-content .btn {
+      width: 100%;
+      justify-content: center;
     }
 
     /* ===== 4. HOSPITAIS ===== */
@@ -1265,87 +1361,78 @@
     </section>
 
     <!-- ===== 2. PLANOS ===== -->
-    <section class="planos section-padding" id="planos">
-      <div class="container text-center">
-        <p class="section-overline">NOSSOS PLANOS</p>
-        <h2 class="section-title">Planos pensados para <strong>diferentes necessidades</strong></h2>
-        <p class="section-subtitle centered">Seja para você, sua família ou sua empresa, nós temos o plano que cabe perfeitamente na sua necessidade.</p>
-      </div>
+    <section class="planos" id="planos">
       <div class="container">
-        <div class="planos-grid">
-
-          <!-- Klini Rede Casa -->
-          <div class="plano-card fade-in">
-            <div class="plano-card-header">
-              <span class="overline">Plano</span>
-              <h3>Klini Rede Casa</h3>
-            </div>
-            <div class="plano-card-body">
-              <p class="para-quem">O Klini Rede Casa Hospitalar é a escolha ideal para quem quer estar segurado nas horas mais importantes.</p>
-              <p class="beneficios-label">Benefícios</p>
-              <p class="beneficios">Acesso a pronto atendimento e internações nos hospitais da rede própria. Cobertura regional hospitalar e obstétrica.</p>
-              <div class="plano-card-actions">
-                <a href="#" class="btn btn-orange">Contrate agora</a>
-                <a href="#" class="plano-link">ou conheça mais</a>
+        <div class="planos-box fade-in">
+          <div class="text-center">
+            <h2 class="section-title">Planos pensados para <strong>diferentes necessidades</strong></h2>
+            <p class="section-subtitle centered">Seja para você, sua família ou sua empresa, nós temos o plano que cabe perfeitamente na sua necessidade.</p>
+          </div>
+          <div class="planos-carousel-wrapper">
+            <button class="planos-arrow prev" id="planosPrev" aria-label="Anterior">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="planos-carousel" id="planosCarousel">
+              <div class="plano-card theme-teal" data-plan="rede-casa">
+                <span class="overline">Plano</span>
+                <h3>Klini<br>Rede Casa</h3>
+                <div class="plano-card-actions">
+                  <a href="#" class="btn btn-primary" style="background:#fff;color:#259591;">Contrate agora</a>
+                  <button class="plano-link" data-plan="rede-casa">ou conheça mais</button>
+                </div>
+              </div>
+              <div class="plano-card theme-teal-light" data-plan="ambulatorial">
+                <span class="overline">Plano</span>
+                <h3>Klini<br>Ambulatorial</h3>
+                <div class="plano-card-actions">
+                  <a href="#" class="btn btn-primary" style="background:#fff;color:#6AA7AE;">Contrate agora</a>
+                  <button class="plano-link" data-plan="ambulatorial">ou conheça mais</button>
+                </div>
+              </div>
+              <div class="plano-card theme-olive" data-plan="200">
+                <span class="overline">Plano</span>
+                <h3>Klini<br>200</h3>
+                <div class="plano-card-actions">
+                  <a href="#" class="btn btn-primary" style="background:#fff;color:#7A9A3A;">Contrate agora</a>
+                  <button class="plano-link" data-plan="200">ou conheça mais</button>
+                </div>
+              </div>
+              <div class="plano-card theme-green" data-plan="400">
+                <span class="overline">Plano</span>
+                <h3>Klini<br>400</h3>
+                <div class="plano-card-actions">
+                  <a href="#" class="btn btn-primary" style="background:#fff;color:#3B8C6E;">Contrate agora</a>
+                  <button class="plano-link" data-plan="400">ou conheça mais</button>
+                </div>
+              </div>
+              <div class="plano-card theme-sage" data-plan="600">
+                <span class="overline">Plano</span>
+                <h3>Klini<br>600</h3>
+                <div class="plano-card-actions">
+                  <a href="#" class="btn btn-primary" style="background:#fff;color:#8CB4A0;">Contrate agora</a>
+                  <button class="plano-link" data-plan="600">ou conheça mais</button>
+                </div>
               </div>
             </div>
+            <button class="planos-arrow next" id="planosNext" aria-label="Próximo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
           </div>
-
-          <!-- Klini Ambulatorial -->
-          <div class="plano-card fade-in">
-            <div class="plano-card-header">
-              <span class="overline">Plano</span>
-              <h3>Klini Ambulatorial</h3>
-            </div>
-            <div class="plano-card-body">
-              <p class="para-quem">O Klini Ambulatorial é feito para quem quer cuidar da saúde de forma ativa sem custar muito.</p>
-              <p class="beneficios-label">Benefícios</p>
-              <p class="beneficios">Acesso a toda a rede de Centros Médicos Klini e permanência de 12h em pronto atendimento em toda a Rede Casa de Hospitais.</p>
-              <div class="plano-card-actions">
-                <a href="#" class="btn btn-orange">Contrate agora</a>
-                <a href="#" class="plano-link">ou conheça mais</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Klini 200 — Mais Popular -->
-          <div class="plano-card popular fade-in">
-            <span class="plano-popular-badge">Mais Popular</span>
-            <div class="plano-card-header">
-              <span class="overline">Plano</span>
-              <h3>Klini 200</h3>
-            </div>
-            <div class="plano-card-body">
-              <p class="para-quem">O Klini 200 é a escolha ideal para quem precisa de um plano de qualidade e vive no agito do dia-a-dia do trabalho e da cidade.</p>
-              <p class="beneficios-label">Benefícios</p>
-              <p class="beneficios">Acesso a consultas, exames, hospitais e pronto atendimento. Rede Credenciada complementar à nossa Rede Própria.</p>
-              <div class="plano-card-actions">
-                <a href="#" class="btn btn-orange">Contrate agora</a>
-                <a href="#" class="plano-link">ou conheça mais</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Klini 400 -->
-          <div class="plano-card fade-in">
-            <div class="plano-card-header">
-              <span class="overline">Plano</span>
-              <h3>Klini 400</h3>
-            </div>
-            <div class="plano-card-body">
-              <p class="para-quem">O Klini 400 é para quem precisa de um plano com cobertura em várias áreas e rede mais ampla.</p>
-              <p class="beneficios-label">Benefícios</p>
-              <p class="beneficios">Acesso a consultas, exames, hospitais e pronto atendimento. Rede Credenciada complementar à nossa Rede Própria.</p>
-              <div class="plano-card-actions">
-                <a href="#" class="btn btn-orange">Contrate agora</a>
-                <a href="#" class="plano-link">ou conheça mais</a>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
+
+    <!-- Modal plano detalhes -->
+    <div class="modal-overlay" id="planoModal">
+      <div class="modal-content">
+        <button class="modal-close" id="modalClose">✕</button>
+        <h3 id="modalTitle"></h3>
+        <p class="modal-para-quem" id="modalParaQuem"></p>
+        <p class="modal-beneficios-label">Benefícios</p>
+        <p class="modal-beneficios" id="modalBeneficios"></p>
+        <a href="#" class="btn btn-orange">Contrate agora</a>
+      </div>
+    </div>
 
     <!-- ===== 3. HOSPITAIS CREDENCIADOS ===== -->
     <section class="hospitais section-padding" id="hospitais">
@@ -1655,6 +1742,77 @@
       fadeEls.forEach(el => el.classList.add('visible'));
     }
 
+
+    // Planos carousel arrows
+    const planosCarousel = document.getElementById('planosCarousel');
+    const planosPrev = document.getElementById('planosPrev');
+    const planosNext = document.getElementById('planosNext');
+    if (planosCarousel) {
+      const scrollAmount = 220;
+      planosPrev.addEventListener('click', () => {
+        planosCarousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      });
+      planosNext.addEventListener('click', () => {
+        planosCarousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      });
+    }
+
+    // Planos modal
+    const planData = {
+      'rede-casa': {
+        title: 'Klini Rede Casa',
+        paraQuem: 'O Klini Rede Casa Hospitalar é a escolha ideal para quem quer estar segurado nas horas mais importantes.',
+        beneficios: 'Acesso a pronto atendimento e internações nos hospitais da rede própria. Cobertura regional hospitalar e obstétrica.'
+      },
+      'ambulatorial': {
+        title: 'Klini Ambulatorial',
+        paraQuem: 'O Klini Ambulatorial é feito para quem quer cuidar da saúde de forma ativa sem custar muito.',
+        beneficios: 'Acesso a toda a rede de Centros Médicos Klini e permanência de 12h em pronto atendimento em toda a Rede Casa de Hospitais.'
+      },
+      '200': {
+        title: 'Klini 200',
+        paraQuem: 'O Klini 200 é a escolha ideal para quem precisa de um plano de qualidade e vive no agito do dia-a-dia do trabalho e da cidade.',
+        beneficios: 'Acesso a consultas, exames, hospitais e pronto atendimento. Rede Credenciada complementar à nossa Rede Própria.'
+      },
+      '400': {
+        title: 'Klini 400',
+        paraQuem: 'O Klini 400 é a escolha ideal para quem precisa de um plano que esteja presente em várias áreas de atendimento e uma rede mais ampla.',
+        beneficios: 'Acesso a consultas, exames, hospitais e pronto atendimento, com Rede Credenciada complementar à nossa Rede Própria.'
+      },
+      '600': {
+        title: 'Klini 600',
+        paraQuem: 'Uma solução completa para quem valoriza segurança e atendimento de qualidade, a qualquer hora e em qualquer lugar.',
+        beneficios: 'Acesso a consultas, exames, hospitais e pronto atendimento. Ampla rede médica e de especialidades.'
+      }
+    };
+
+    const modal = document.getElementById('planoModal');
+    const modalClose = document.getElementById('modalClose');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalParaQuem = document.getElementById('modalParaQuem');
+    const modalBeneficios = document.getElementById('modalBeneficios');
+
+    document.querySelectorAll('.plano-link[data-plan]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const plan = planData[btn.dataset.plan];
+        if (!plan) return;
+        modalTitle.textContent = plan.title;
+        modalParaQuem.textContent = plan.paraQuem;
+        modalBeneficios.textContent = plan.beneficios;
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
 
     // Depoimentos carousel dots
     const track = document.getElementById('carouselTrack');
