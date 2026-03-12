@@ -652,7 +652,7 @@
 
     /* Plan cards - compact */
     .plano-card {
-      flex: 0 0 200px;
+      flex: 0 0 calc(25% - 12px);
       scroll-snap-align: start;
       border-radius: var(--radius-lg);
       padding: var(--space-xl) var(--space-lg);
@@ -665,8 +665,11 @@
       cursor: default;
       min-height: 220px;
     }
-    @media (min-width: 768px) {
-      .plano-card { flex: 1 1 0; min-width: 180px; }
+    @media (max-width: 1023px) {
+      .plano-card { flex: 0 0 220px; }
+    }
+    @media (max-width: 639px) {
+      .plano-card { flex: 0 0 200px; }
     }
     .plano-card:hover {
       transform: translateY(-4px);
@@ -708,41 +711,41 @@
       padding: 0;
     }
 
-    /* Card color themes */
-    .plano-card.theme-teal {
+    /* Card color themes — brand palette */
+    .plano-card.theme-1 {
       background: linear-gradient(135deg, #259591 0%, #1E7B78 100%);
       color: var(--color-white);
     }
-    .plano-card.theme-teal .plano-link { color: rgba(255,255,255,0.8); }
-    .plano-card.theme-teal .plano-link:hover { color: #fff; }
+    .plano-card.theme-1 .plano-link { color: rgba(255,255,255,0.8); }
+    .plano-card.theme-1 .plano-link:hover { color: #fff; }
 
-    .plano-card.theme-teal-light {
+    .plano-card.theme-2 {
       background: linear-gradient(135deg, #6AA7AE 0%, #51AAA7 100%);
       color: var(--color-white);
     }
-    .plano-card.theme-teal-light .plano-link { color: rgba(255,255,255,0.8); }
-    .plano-card.theme-teal-light .plano-link:hover { color: #fff; }
+    .plano-card.theme-2 .plano-link { color: rgba(255,255,255,0.8); }
+    .plano-card.theme-2 .plano-link:hover { color: #fff; }
 
-    .plano-card.theme-olive {
-      background: linear-gradient(135deg, #7A9A3A 0%, #5E7D2E 100%);
+    .plano-card.theme-3 {
+      background: linear-gradient(135deg, #CD7925 0%, #B56B20 100%);
       color: var(--color-white);
     }
-    .plano-card.theme-olive .plano-link { color: rgba(255,255,255,0.8); }
-    .plano-card.theme-olive .plano-link:hover { color: #fff; }
+    .plano-card.theme-3 .plano-link { color: rgba(255,255,255,0.8); }
+    .plano-card.theme-3 .plano-link:hover { color: #fff; }
 
-    .plano-card.theme-green {
-      background: linear-gradient(135deg, #3B8C6E 0%, #2D7058 100%);
+    .plano-card.theme-4 {
+      background: linear-gradient(135deg, #E05759 0%, #C94A4C 100%);
       color: var(--color-white);
     }
-    .plano-card.theme-green .plano-link { color: rgba(255,255,255,0.8); }
-    .plano-card.theme-green .plano-link:hover { color: #fff; }
+    .plano-card.theme-4 .plano-link { color: rgba(255,255,255,0.8); }
+    .plano-card.theme-4 .plano-link:hover { color: #fff; }
 
-    .plano-card.theme-sage {
-      background: linear-gradient(135deg, #8CB4A0 0%, #6E9A86 100%);
+    .plano-card.theme-5 {
+      background: linear-gradient(135deg, #51AAA7 0%, #7CBFBD 100%);
       color: var(--color-white);
     }
-    .plano-card.theme-sage .plano-link { color: rgba(255,255,255,0.8); }
-    .plano-card.theme-sage .plano-link:hover { color: #fff; }
+    .plano-card.theme-5 .plano-link { color: rgba(255,255,255,0.8); }
+    .plano-card.theme-5 .plano-link:hover { color: #fff; }
 
     /* Modal/Popup */
     .modal-overlay {
@@ -1373,43 +1376,43 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
             </button>
             <div class="planos-carousel" id="planosCarousel">
-              <div class="plano-card theme-teal" data-plan="rede-casa">
+              <div class="plano-card theme-1" data-plan="rede-casa">
                 <span class="overline">Plano</span>
                 <h3>Klini<br>Rede Casa</h3>
                 <div class="plano-card-actions">
-                  <a href="#" class="btn btn-primary" style="background:#fff;color:#259591;">Contrate agora</a>
+                  <a href="#" class="btn" style="background:#fff;color:#259591;">Contrate agora</a>
                   <button class="plano-link" data-plan="rede-casa">ou conheça mais</button>
                 </div>
               </div>
-              <div class="plano-card theme-teal-light" data-plan="ambulatorial">
+              <div class="plano-card theme-2" data-plan="ambulatorial">
                 <span class="overline">Plano</span>
                 <h3>Klini<br>Ambulatorial</h3>
                 <div class="plano-card-actions">
-                  <a href="#" class="btn btn-primary" style="background:#fff;color:#6AA7AE;">Contrate agora</a>
+                  <a href="#" class="btn" style="background:#fff;color:#6AA7AE;">Contrate agora</a>
                   <button class="plano-link" data-plan="ambulatorial">ou conheça mais</button>
                 </div>
               </div>
-              <div class="plano-card theme-olive" data-plan="200">
+              <div class="plano-card theme-3" data-plan="200">
                 <span class="overline">Plano</span>
                 <h3>Klini<br>200</h3>
                 <div class="plano-card-actions">
-                  <a href="#" class="btn btn-primary" style="background:#fff;color:#7A9A3A;">Contrate agora</a>
+                  <a href="#" class="btn" style="background:#fff;color:#CD7925;">Contrate agora</a>
                   <button class="plano-link" data-plan="200">ou conheça mais</button>
                 </div>
               </div>
-              <div class="plano-card theme-green" data-plan="400">
+              <div class="plano-card theme-4" data-plan="400">
                 <span class="overline">Plano</span>
                 <h3>Klini<br>400</h3>
                 <div class="plano-card-actions">
-                  <a href="#" class="btn btn-primary" style="background:#fff;color:#3B8C6E;">Contrate agora</a>
+                  <a href="#" class="btn" style="background:#fff;color:#E05759;">Contrate agora</a>
                   <button class="plano-link" data-plan="400">ou conheça mais</button>
                 </div>
               </div>
-              <div class="plano-card theme-sage" data-plan="600">
+              <div class="plano-card theme-5" data-plan="600">
                 <span class="overline">Plano</span>
                 <h3>Klini<br>600</h3>
                 <div class="plano-card-actions">
-                  <a href="#" class="btn btn-primary" style="background:#fff;color:#8CB4A0;">Contrate agora</a>
+                  <a href="#" class="btn" style="background:#fff;color:#51AAA7;">Contrate agora</a>
                   <button class="plano-link" data-plan="600">ou conheça mais</button>
                 </div>
               </div>
